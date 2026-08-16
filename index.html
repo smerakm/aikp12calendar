@@ -62,6 +62,21 @@
     .event.league-b-st-i-stan-pojkar-14-grupp-b { background: rgba(37,99,235,0.18); border-left-color: #60a5fa; }
   }
 
+  .event.league-b-st-i-stan-pojkar-15-grupp-c { background: #e6f9d5; border-left: 4px solid #3f6212; }
+  @media (prefers-color-scheme: dark) {
+    .event.league-b-st-i-stan-pojkar-15-grupp-c { background: rgba(101,163,13,0.18); border-left-color: #a3e635; }
+  }
+
+  .event.league-pantamera-herrjuniorer-division-3-norra { background: #d3f5ec; border-left: 4px solid #0f766e; }
+  @media (prefers-color-scheme: dark) {
+    .event.league-pantamera-herrjuniorer-division-3-norra { background: rgba(13,148,136,0.18); border-left-color: #5eead4; }
+  }
+
+  .event.league-pantamera-pojkar-2010-b-c { background: #dcf7e3; border-left: 4px solid #047857; }
+  @media (prefers-color-scheme: dark) {
+    .event.league-pantamera-pojkar-2010-b-c { background: rgba(16,185,129,0.16); border-left-color: #34d399; }
+  }
+
   .event.league-pantamera-pojkar-2012-b-norra { background: #fff3c4; border-left: 4px solid #8a6d00; }
   @media (prefers-color-scheme: dark) {
     .event.league-pantamera-pojkar-2012-b-norra { background: rgba(240,196,25,0.16); border-left-color: #f0c419; }
@@ -70,6 +85,11 @@
   .event.league-pantamera-pojkar-2013-c-norra { background: #e2e4e8; border-left: 4px solid #374151; }
   @media (prefers-color-scheme: dark) {
     .event.league-pantamera-pojkar-2013-c-norra { background: rgba(255,255,255,0.07); border-left-color: #d1d5db; }
+  }
+
+  .event.league-tr-ningsmatcher-herr { background: #e5f3d8; border-left: 4px solid #4d7c0f; }
+  @media (prefers-color-scheme: dark) {
+    .event.league-tr-ningsmatcher-herr { background: rgba(77,124,15,0.18); border-left-color: #bef264; }
   }
   .date {
     flex: 0 0 3rem;
@@ -122,6 +142,17 @@
   .filters .past-row {
     margin-bottom: 0.5rem;
   }
+  .filters .group-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1rem;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .filters .group-toggle-label {
+    font-weight: 600;
+  }
   .filters .league-row {
     display: flex;
     flex-wrap: wrap;
@@ -147,7 +178,7 @@
   <div class="wrap">
     <header>
       <h1>AIK IBF – Match Schedule</h1>
-      <div class="sub">Generated 2026-07-28 15:44 from api.innebandy.se</div>
+      <div class="sub">Generated 2026-08-16 20:53 from api.innebandy.se</div>
       <div class="filters">
         <div class="past-row">
           <label class="toggle">
@@ -155,30 +186,155 @@
             Hide past matches
           </label>
         </div>
+        <div class="group-row">
+          
+      <label class="toggle group-toggle-label">
+        <input type="checkbox" class="group-toggle" data-group="117199" checked>
+        AIK p12/13
+      </label>
+
+      <label class="toggle group-toggle-label">
+        <input type="checkbox" class="group-toggle" data-group="126811" checked>
+        AIK Utveckling
+      </label>
+        </div>
         <div class="league-row">
           
       <label class="toggle league-toggle-label">
-        <input type="checkbox" class="league-toggle" data-league="b-st-i-stan-pojkar-14-grupp-b" checked>
+        <input type="checkbox" class="league-toggle" data-league="b-st-i-stan-pojkar-14-grupp-b" data-group="117199" checked>
         <span class="swatch" style="background:#1d4ed8"></span>
         Bäst i Stan Pojkar 14 - Grupp B
       </label>
 
       <label class="toggle league-toggle-label">
-        <input type="checkbox" class="league-toggle" data-league="pantamera-pojkar-2012-b-norra" checked>
+        <input type="checkbox" class="league-toggle" data-league="b-st-i-stan-pojkar-15-grupp-c" data-group="126811" checked>
+        <span class="swatch" style="background:#3f6212"></span>
+        Bäst i Stan Pojkar 15 - Grupp C
+      </label>
+
+      <label class="toggle league-toggle-label">
+        <input type="checkbox" class="league-toggle" data-league="pantamera-herrjuniorer-division-3-norra" data-group="126811" checked>
+        <span class="swatch" style="background:#0f766e"></span>
+        Pantamera Herrjuniorer Division 3 Norra
+      </label>
+
+      <label class="toggle league-toggle-label">
+        <input type="checkbox" class="league-toggle" data-league="pantamera-pojkar-2010-b-c" data-group="126811" checked>
+        <span class="swatch" style="background:#047857"></span>
+        Pantamera Pojkar 2010 B/C
+      </label>
+
+      <label class="toggle league-toggle-label">
+        <input type="checkbox" class="league-toggle" data-league="pantamera-pojkar-2012-b-norra" data-group="117199" checked>
         <span class="swatch" style="background:#8a6d00"></span>
         Pantamera Pojkar 2012 B Norra
       </label>
 
       <label class="toggle league-toggle-label">
-        <input type="checkbox" class="league-toggle" data-league="pantamera-pojkar-2013-c-norra" checked>
+        <input type="checkbox" class="league-toggle" data-league="pantamera-pojkar-2013-c-norra" data-group="117199" checked>
         <span class="swatch" style="background:#374151"></span>
         Pantamera Pojkar 2013 C Norra
+      </label>
+
+      <label class="toggle league-toggle-label">
+        <input type="checkbox" class="league-toggle" data-league="tr-ningsmatcher-herr" data-group="126811" checked>
+        <span class="swatch" style="background:#4d7c0f"></span>
+        Träningsmatcher Herr
       </label>
         </div>
       </div>
     </header>
     <div id="events">
-      <h2 class="month">September 2026</h2>
+      <h2 class="month">August 2026</h2>
+
+        <div class="event league-tr-ningsmatcher-herr" data-league="tr-ningsmatcher-herr">
+          <div class="date">
+            <span class="weekday">Wed</span>
+            <span class="day">26</span>
+          </div>
+          <div class="details">
+            <div class="teams">
+              <span class="team ">Torshälla IBK HJ</span>
+              <span class="sep">vs</span>
+              <span class="team us">AIK IBF Utveckling</span>
+            </div>
+            <div class="meta">
+              <span class="time">19:00–20:10</span>
+              <span class="dot">&middot;</span>
+              <span class="venue away">Away</span>
+              <span class="dot">&middot;</span>
+              <span class="location">Volvo CE Arena A2, Eskilstuna</span>
+            </div>
+            <div class="group">Träningsmatcher Herr</div>
+          </div>
+        </div>
+<h2 class="month">September 2026</h2>
+
+        <div class="event league-b-st-i-stan-pojkar-15-grupp-c" data-league="b-st-i-stan-pojkar-15-grupp-c">
+          <div class="date">
+            <span class="weekday">Sat</span>
+            <span class="day">5</span>
+          </div>
+          <div class="details">
+            <div class="teams">
+              <span class="team ">Älvsjö AIK IBF</span>
+              <span class="sep">vs</span>
+              <span class="team us">AIK IBF</span>
+            </div>
+            <div class="meta">
+              <span class="time">09:00–10:00</span>
+              <span class="dot">&middot;</span>
+              <span class="venue away">Away</span>
+              <span class="dot">&middot;</span>
+              <span class="location">Riddersvik , Stockholm</span>
+            </div>
+            <div class="group">Bäst i Stan Pojkar 15 - Grupp C</div>
+          </div>
+        </div>
+
+        <div class="event league-b-st-i-stan-pojkar-15-grupp-c" data-league="b-st-i-stan-pojkar-15-grupp-c">
+          <div class="date">
+            <span class="weekday">Sat</span>
+            <span class="day">5</span>
+          </div>
+          <div class="details">
+            <div class="teams">
+              <span class="team us">AIK IBF</span>
+              <span class="sep">vs</span>
+              <span class="team ">Huddinge IBS</span>
+            </div>
+            <div class="meta">
+              <span class="time">13:00–14:00</span>
+              <span class="dot">&middot;</span>
+              <span class="venue home">Home</span>
+              <span class="dot">&middot;</span>
+              <span class="location">Riddersvik , Stockholm</span>
+            </div>
+            <div class="group">Bäst i Stan Pojkar 15 - Grupp C</div>
+          </div>
+        </div>
+
+        <div class="event league-b-st-i-stan-pojkar-15-grupp-c" data-league="b-st-i-stan-pojkar-15-grupp-c">
+          <div class="date">
+            <span class="weekday">Sun</span>
+            <span class="day">6</span>
+          </div>
+          <div class="details">
+            <div class="teams">
+              <span class="team us">AIK IBF</span>
+              <span class="sep">vs</span>
+              <span class="team ">Tyresö Trollbäcken IBK</span>
+            </div>
+            <div class="meta">
+              <span class="time">12:00–13:00</span>
+              <span class="dot">&middot;</span>
+              <span class="venue home">Home</span>
+              <span class="dot">&middot;</span>
+              <span class="location">Riddersvik , Stockholm</span>
+            </div>
+            <div class="group">Bäst i Stan Pojkar 15 - Grupp C</div>
+          </div>
+        </div>
 
         <div class="event league-b-st-i-stan-pojkar-14-grupp-b" data-league="b-st-i-stan-pojkar-14-grupp-b">
           <div class="date">
@@ -221,6 +377,28 @@
               <span class="location">Mälaröhallen 1, Ekerö</span>
             </div>
             <div class="group">Bäst i Stan Pojkar 14 - Grupp B</div>
+          </div>
+        </div>
+
+        <div class="event league-pantamera-herrjuniorer-division-3-norra" data-league="pantamera-herrjuniorer-division-3-norra">
+          <div class="date">
+            <span class="weekday">Sat</span>
+            <span class="day">19</span>
+          </div>
+          <div class="details">
+            <div class="teams">
+              <span class="team ">Hagunda IBF</span>
+              <span class="sep">vs</span>
+              <span class="team us">AIK IBF (B)</span>
+            </div>
+            <div class="meta">
+              <span class="time">16:30–18:00</span>
+              <span class="dot">&middot;</span>
+              <span class="venue away">Away</span>
+              <span class="dot">&middot;</span>
+              <span class="location">IFU Arena Ductus (B), Uppsala</span>
+            </div>
+            <div class="group">Pantamera Herrjuniorer Division 3 Norra</div>
           </div>
         </div>
 
@@ -268,6 +446,50 @@
           </div>
         </div>
 
+        <div class="event league-pantamera-pojkar-2010-b-c" data-league="pantamera-pojkar-2010-b-c">
+          <div class="date">
+            <span class="weekday">Sat</span>
+            <span class="day">26</span>
+          </div>
+          <div class="details">
+            <div class="teams">
+              <span class="team ">Västerhaninge IBK</span>
+              <span class="sep">vs</span>
+              <span class="team us">AIK IBF</span>
+            </div>
+            <div class="meta">
+              <span class="time">12:45–14:00</span>
+              <span class="dot">&middot;</span>
+              <span class="venue away">Away</span>
+              <span class="dot">&middot;</span>
+              <span class="location">Åbyhallen - Haninge, Haninge</span>
+            </div>
+            <div class="group">Pantamera Pojkar 2010 B/C</div>
+          </div>
+        </div>
+
+        <div class="event league-pantamera-herrjuniorer-division-3-norra" data-league="pantamera-herrjuniorer-division-3-norra">
+          <div class="date">
+            <span class="weekday">Sat</span>
+            <span class="day">26</span>
+          </div>
+          <div class="details">
+            <div class="teams">
+              <span class="team us">AIK IBF (B)</span>
+              <span class="sep">vs</span>
+              <span class="team ">Hässelby SK IBK (D)</span>
+            </div>
+            <div class="meta">
+              <span class="time">13:30–15:00</span>
+              <span class="dot">&middot;</span>
+              <span class="venue home">Home</span>
+              <span class="dot">&middot;</span>
+              <span class="location">Bagartorpshallen , Solna</span>
+            </div>
+            <div class="group">Pantamera Herrjuniorer Division 3 Norra</div>
+          </div>
+        </div>
+
         <div class="event league-pantamera-pojkar-2013-c-norra" data-league="pantamera-pojkar-2013-c-norra">
           <div class="date">
             <span class="weekday">Sun</span>
@@ -291,6 +513,28 @@
         </div>
 <h2 class="month">October 2026</h2>
 
+        <div class="event league-pantamera-herrjuniorer-division-3-norra" data-league="pantamera-herrjuniorer-division-3-norra">
+          <div class="date">
+            <span class="weekday">Fri</span>
+            <span class="day">2</span>
+          </div>
+          <div class="details">
+            <div class="teams">
+              <span class="team ">Täby FC (C)</span>
+              <span class="sep">vs</span>
+              <span class="team us">AIK IBF (B)</span>
+            </div>
+            <div class="meta">
+              <span class="time">19:00–20:30</span>
+              <span class="dot">&middot;</span>
+              <span class="venue away">Away</span>
+              <span class="dot">&middot;</span>
+              <span class="location">Grindtorpshallen , Täby</span>
+            </div>
+            <div class="group">Pantamera Herrjuniorer Division 3 Norra</div>
+          </div>
+        </div>
+
         <div class="event league-pantamera-pojkar-2013-c-norra" data-league="pantamera-pojkar-2013-c-norra">
           <div class="date">
             <span class="weekday">Sat</span>
@@ -303,13 +547,57 @@
               <span class="team ">Järfälla Bele IBK</span>
             </div>
             <div class="meta">
-              <span class="time">15:00–16:15</span>
+              <span class="time">13:45–15:00</span>
               <span class="dot">&middot;</span>
               <span class="venue home">Home</span>
               <span class="dot">&middot;</span>
               <span class="location">Bagartorpshallen , Solna</span>
             </div>
             <div class="group">Pantamera Pojkar 2013 C Norra</div>
+          </div>
+        </div>
+
+        <div class="event league-pantamera-pojkar-2010-b-c" data-league="pantamera-pojkar-2010-b-c">
+          <div class="date">
+            <span class="weekday">Sat</span>
+            <span class="day">3</span>
+          </div>
+          <div class="details">
+            <div class="teams">
+              <span class="team us">AIK IBF</span>
+              <span class="sep">vs</span>
+              <span class="team ">Vaxholms IBF</span>
+            </div>
+            <div class="meta">
+              <span class="time">15:00–16:15</span>
+              <span class="dot">&middot;</span>
+              <span class="venue home">Home</span>
+              <span class="dot">&middot;</span>
+              <span class="location">Bagartorpshallen , Solna</span>
+            </div>
+            <div class="group">Pantamera Pojkar 2010 B/C</div>
+          </div>
+        </div>
+
+        <div class="event league-pantamera-pojkar-2010-b-c" data-league="pantamera-pojkar-2010-b-c">
+          <div class="date">
+            <span class="weekday">Sun</span>
+            <span class="day">11</span>
+          </div>
+          <div class="details">
+            <div class="teams">
+              <span class="team ">Huddinge IBS</span>
+              <span class="sep">vs</span>
+              <span class="team us">AIK IBF</span>
+            </div>
+            <div class="meta">
+              <span class="time">11:30–12:45</span>
+              <span class="dot">&middot;</span>
+              <span class="venue away">Away</span>
+              <span class="dot">&middot;</span>
+              <span class="location">Glömstahallen , Huddinge</span>
+            </div>
+            <div class="group">Pantamera Pojkar 2010 B/C</div>
           </div>
         </div>
 
@@ -357,6 +645,28 @@
           </div>
         </div>
 
+        <div class="event league-pantamera-herrjuniorer-division-3-norra" data-league="pantamera-herrjuniorer-division-3-norra">
+          <div class="date">
+            <span class="weekday">Sat</span>
+            <span class="day">17</span>
+          </div>
+          <div class="details">
+            <div class="teams">
+              <span class="team ">Vaxholms IBF</span>
+              <span class="sep">vs</span>
+              <span class="team us">AIK IBF (B)</span>
+            </div>
+            <div class="meta">
+              <span class="time">13:15–14:45</span>
+              <span class="dot">&middot;</span>
+              <span class="venue away">Away</span>
+              <span class="dot">&middot;</span>
+              <span class="location">Vaxholm innebandyhallen, Vaxholm</span>
+            </div>
+            <div class="group">Pantamera Herrjuniorer Division 3 Norra</div>
+          </div>
+        </div>
+
         <div class="event league-pantamera-pojkar-2013-c-norra" data-league="pantamera-pojkar-2013-c-norra">
           <div class="date">
             <span class="weekday">Sat</span>
@@ -398,6 +708,28 @@
               <span class="location">Viksjö Sporthall , Järfälla</span>
             </div>
             <div class="group">Pantamera Pojkar 2012 B Norra</div>
+          </div>
+        </div>
+
+        <div class="event league-pantamera-pojkar-2010-b-c" data-league="pantamera-pojkar-2010-b-c">
+          <div class="date">
+            <span class="weekday">Sun</span>
+            <span class="day">18</span>
+          </div>
+          <div class="details">
+            <div class="teams">
+              <span class="team us">AIK IBF</span>
+              <span class="sep">vs</span>
+              <span class="team ">Skogås/Trångsunds IBK</span>
+            </div>
+            <div class="meta">
+              <span class="time">16:45–18:00</span>
+              <span class="dot">&middot;</span>
+              <span class="venue home">Home</span>
+              <span class="dot">&middot;</span>
+              <span class="location">Ulriksdalshallen , Solna</span>
+            </div>
+            <div class="group">Pantamera Pojkar 2010 B/C</div>
           </div>
         </div>
 
@@ -488,6 +820,50 @@
             <div class="group">Pantamera Pojkar 2013 C Norra</div>
           </div>
         </div>
+
+        <div class="event league-pantamera-pojkar-2010-b-c" data-league="pantamera-pojkar-2010-b-c">
+          <div class="date">
+            <span class="weekday">Sat</span>
+            <span class="day">24</span>
+          </div>
+          <div class="details">
+            <div class="teams">
+              <span class="team ">Värmdö IF</span>
+              <span class="sep">vs</span>
+              <span class="team us">AIK IBF</span>
+            </div>
+            <div class="meta">
+              <span class="time">14:15–15:30</span>
+              <span class="dot">&middot;</span>
+              <span class="venue away">Away</span>
+              <span class="dot">&middot;</span>
+              <span class="location">Värmdö sporthall, Värmdö</span>
+            </div>
+            <div class="group">Pantamera Pojkar 2010 B/C</div>
+          </div>
+        </div>
+
+        <div class="event league-pantamera-pojkar-2010-b-c" data-league="pantamera-pojkar-2010-b-c">
+          <div class="date">
+            <span class="weekday">Sat</span>
+            <span class="day">31</span>
+          </div>
+          <div class="details">
+            <div class="teams">
+              <span class="team us">AIK IBF</span>
+              <span class="sep">vs</span>
+              <span class="team ">FBI Tullinge</span>
+            </div>
+            <div class="meta">
+              <span class="time">16:45–18:00</span>
+              <span class="dot">&middot;</span>
+              <span class="venue home">Home</span>
+              <span class="dot">&middot;</span>
+              <span class="location">Bagartorpshallen , Solna</span>
+            </div>
+            <div class="group">Pantamera Pojkar 2010 B/C</div>
+          </div>
+        </div>
 <h2 class="month">November 2026</h2>
 
         <div class="event league-pantamera-pojkar-2013-c-norra" data-league="pantamera-pojkar-2013-c-norra">
@@ -556,6 +932,28 @@
           </div>
         </div>
 
+        <div class="event league-pantamera-pojkar-2010-b-c" data-league="pantamera-pojkar-2010-b-c">
+          <div class="date">
+            <span class="weekday">Sun</span>
+            <span class="day">15</span>
+          </div>
+          <div class="details">
+            <div class="teams">
+              <span class="team ">FBC Sollentuna</span>
+              <span class="sep">vs</span>
+              <span class="team us">AIK IBF</span>
+            </div>
+            <div class="meta">
+              <span class="time">14:45–16:00</span>
+              <span class="dot">&middot;</span>
+              <span class="venue away">Away</span>
+              <span class="dot">&middot;</span>
+              <span class="location">Rotebrohallen, Sollentuna</span>
+            </div>
+            <div class="group">Pantamera Pojkar 2010 B/C</div>
+          </div>
+        </div>
+
         <div class="event league-pantamera-pojkar-2013-c-norra" data-league="pantamera-pojkar-2013-c-norra">
           <div class="date">
             <span class="weekday">Sun</span>
@@ -575,6 +973,50 @@
               <span class="location">Ulriksdalshallen , Solna</span>
             </div>
             <div class="group">Pantamera Pojkar 2013 C Norra</div>
+          </div>
+        </div>
+
+        <div class="event league-pantamera-pojkar-2013-c-norra" data-league="pantamera-pojkar-2013-c-norra">
+          <div class="date">
+            <span class="weekday">Sat</span>
+            <span class="day">21</span>
+          </div>
+          <div class="details">
+            <div class="teams">
+              <span class="team us">AIK IBF</span>
+              <span class="sep">vs</span>
+              <span class="team ">Hässelby SK IBK</span>
+            </div>
+            <div class="meta">
+              <span class="time">12:30–13:45</span>
+              <span class="dot">&middot;</span>
+              <span class="venue home">Home</span>
+              <span class="dot">&middot;</span>
+              <span class="location">Bagartorpshallen , Solna</span>
+            </div>
+            <div class="group">Pantamera Pojkar 2013 C Norra</div>
+          </div>
+        </div>
+
+        <div class="event league-pantamera-pojkar-2010-b-c" data-league="pantamera-pojkar-2010-b-c">
+          <div class="date">
+            <span class="weekday">Sat</span>
+            <span class="day">21</span>
+          </div>
+          <div class="details">
+            <div class="teams">
+              <span class="team us">AIK IBF</span>
+              <span class="sep">vs</span>
+              <span class="team ">Visby IBK</span>
+            </div>
+            <div class="meta">
+              <span class="time">13:45–15:00</span>
+              <span class="dot">&middot;</span>
+              <span class="venue home">Home</span>
+              <span class="dot">&middot;</span>
+              <span class="location">Bagartorpshallen , Solna</span>
+            </div>
+            <div class="group">Pantamera Pojkar 2010 B/C</div>
           </div>
         </div>
 
@@ -600,25 +1042,25 @@
           </div>
         </div>
 
-        <div class="event league-pantamera-pojkar-2013-c-norra" data-league="pantamera-pojkar-2013-c-norra">
+        <div class="event league-pantamera-herrjuniorer-division-3-norra" data-league="pantamera-herrjuniorer-division-3-norra">
           <div class="date">
-            <span class="weekday">Sun</span>
-            <span class="day">22</span>
+            <span class="weekday">Sat</span>
+            <span class="day">21</span>
           </div>
           <div class="details">
             <div class="teams">
-              <span class="team us">AIK IBF</span>
+              <span class="team ">Åkersberga IBF (B)</span>
               <span class="sep">vs</span>
-              <span class="team ">Hässelby SK IBK</span>
+              <span class="team us">AIK IBF (B)</span>
             </div>
             <div class="meta">
-              <span class="time">16:00–17:15</span>
+              <span class="time">18:30–20:00</span>
               <span class="dot">&middot;</span>
-              <span class="venue home">Home</span>
+              <span class="venue away">Away</span>
               <span class="dot">&middot;</span>
-              <span class="location">Ulriksdalshallen , Solna</span>
+              <span class="location">Österåkers Multiarena Plan 1 - Ljusterö, Österåker</span>
             </div>
-            <div class="group">Pantamera Pojkar 2013 C Norra</div>
+            <div class="group">Pantamera Herrjuniorer Division 3 Norra</div>
           </div>
         </div>
 
@@ -651,7 +1093,7 @@
           </div>
           <div class="details">
             <div class="teams">
-              <span class="team ">Älvsjö AIK IBF</span>
+              <span class="team ">Väsby AIK</span>
               <span class="sep">vs</span>
               <span class="team us">AIK IBF</span>
             </div>
@@ -660,12 +1102,56 @@
               <span class="dot">&middot;</span>
               <span class="venue away">Away</span>
               <span class="dot">&middot;</span>
-              <span class="location">Kämpetorpshallen 2, Stockholm</span>
+              <span class="location">Väsby skola, Upplands-Väsby</span>
             </div>
             <div class="group">Pantamera Pojkar 2013 C Norra</div>
           </div>
         </div>
+
+        <div class="event league-pantamera-herrjuniorer-division-3-norra" data-league="pantamera-herrjuniorer-division-3-norra">
+          <div class="date">
+            <span class="weekday">Sun</span>
+            <span class="day">29</span>
+          </div>
+          <div class="details">
+            <div class="teams">
+              <span class="team us">AIK IBF (B)</span>
+              <span class="sep">vs</span>
+              <span class="team ">Vallentuna IBK (B)</span>
+            </div>
+            <div class="meta">
+              <span class="time">18:45–20:15</span>
+              <span class="dot">&middot;</span>
+              <span class="venue home">Home</span>
+              <span class="dot">&middot;</span>
+              <span class="location">Ulriksdalshallen , Solna</span>
+            </div>
+            <div class="group">Pantamera Herrjuniorer Division 3 Norra</div>
+          </div>
+        </div>
 <h2 class="month">December 2026</h2>
+
+        <div class="event league-pantamera-pojkar-2010-b-c" data-league="pantamera-pojkar-2010-b-c">
+          <div class="date">
+            <span class="weekday">Sat</span>
+            <span class="day">5</span>
+          </div>
+          <div class="details">
+            <div class="teams">
+              <span class="team ">Järfälla Bele IBK (A)</span>
+              <span class="sep">vs</span>
+              <span class="team us">AIK IBF</span>
+            </div>
+            <div class="meta">
+              <span class="time">13:00–14:15</span>
+              <span class="dot">&middot;</span>
+              <span class="venue away">Away</span>
+              <span class="dot">&middot;</span>
+              <span class="location">Björkebyhallen , Järfälla</span>
+            </div>
+            <div class="group">Pantamera Pojkar 2010 B/C</div>
+          </div>
+        </div>
 
         <div class="event league-pantamera-pojkar-2012-b-norra" data-league="pantamera-pojkar-2012-b-norra">
           <div class="date">
@@ -711,6 +1197,28 @@
           </div>
         </div>
 
+        <div class="event league-pantamera-herrjuniorer-division-3-norra" data-league="pantamera-herrjuniorer-division-3-norra">
+          <div class="date">
+            <span class="weekday">Sun</span>
+            <span class="day">6</span>
+          </div>
+          <div class="details">
+            <div class="teams">
+              <span class="team ">Järfälla Bele IBK (C)</span>
+              <span class="sep">vs</span>
+              <span class="team us">AIK IBF (B)</span>
+            </div>
+            <div class="meta">
+              <span class="time">15:15–16:45</span>
+              <span class="dot">&middot;</span>
+              <span class="venue away">Away</span>
+              <span class="dot">&middot;</span>
+              <span class="location">Viksjö Sporthall , Järfälla</span>
+            </div>
+            <div class="group">Pantamera Herrjuniorer Division 3 Norra</div>
+          </div>
+        </div>
+
         <div class="event league-pantamera-pojkar-2013-c-norra" data-league="pantamera-pojkar-2013-c-norra">
           <div class="date">
             <span class="weekday">Sat</span>
@@ -730,6 +1238,50 @@
               <span class="location">Bagartorpshallen , Solna</span>
             </div>
             <div class="group">Pantamera Pojkar 2013 C Norra</div>
+          </div>
+        </div>
+
+        <div class="event league-pantamera-pojkar-2010-b-c" data-league="pantamera-pojkar-2010-b-c">
+          <div class="date">
+            <span class="weekday">Sun</span>
+            <span class="day">13</span>
+          </div>
+          <div class="details">
+            <div class="teams">
+              <span class="team us">AIK IBF</span>
+              <span class="sep">vs</span>
+              <span class="team ">Älvsjö AIK IBF (A)</span>
+            </div>
+            <div class="meta">
+              <span class="time">14:30–15:45</span>
+              <span class="dot">&middot;</span>
+              <span class="venue home">Home</span>
+              <span class="dot">&middot;</span>
+              <span class="location">Ulriksdalshallen , Solna</span>
+            </div>
+            <div class="group">Pantamera Pojkar 2010 B/C</div>
+          </div>
+        </div>
+
+        <div class="event league-pantamera-herrjuniorer-division-3-norra" data-league="pantamera-herrjuniorer-division-3-norra">
+          <div class="date">
+            <span class="weekday">Sun</span>
+            <span class="day">13</span>
+          </div>
+          <div class="details">
+            <div class="teams">
+              <span class="team us">AIK IBF (B)</span>
+              <span class="sep">vs</span>
+              <span class="team ">IK Sirius FBC</span>
+            </div>
+            <div class="meta">
+              <span class="time">17:15–18:45</span>
+              <span class="dot">&middot;</span>
+              <span class="venue home">Home</span>
+              <span class="dot">&middot;</span>
+              <span class="location">Ulriksdalshallen , Solna</span>
+            </div>
+            <div class="group">Pantamera Herrjuniorer Division 3 Norra</div>
           </div>
         </div>
 
@@ -776,27 +1328,71 @@
             <div class="group">Pantamera Pojkar 2013 C Norra</div>
           </div>
         </div>
-<h2 class="month">January 2027</h2>
 
-        <div class="event league-pantamera-pojkar-2012-b-norra" data-league="pantamera-pojkar-2012-b-norra">
+        <div class="event league-pantamera-pojkar-2010-b-c" data-league="pantamera-pojkar-2010-b-c">
           <div class="date">
             <span class="weekday">Sun</span>
-            <span class="day">10</span>
+            <span class="day">20</span>
           </div>
           <div class="details">
             <div class="teams">
-              <span class="team ">Täby FC (C)</span>
+              <span class="team us">AIK IBF</span>
+              <span class="sep">vs</span>
+              <span class="team ">Västerhaninge IBK</span>
+            </div>
+            <div class="meta">
+              <span class="time">13:30–14:45</span>
+              <span class="dot">&middot;</span>
+              <span class="venue home">Home</span>
+              <span class="dot">&middot;</span>
+              <span class="location">Ulriksdalshallen , Solna</span>
+            </div>
+            <div class="group">Pantamera Pojkar 2010 B/C</div>
+          </div>
+        </div>
+
+        <div class="event league-pantamera-herrjuniorer-division-3-norra" data-league="pantamera-herrjuniorer-division-3-norra">
+          <div class="date">
+            <span class="weekday">Sun</span>
+            <span class="day">20</span>
+          </div>
+          <div class="details">
+            <div class="teams">
+              <span class="team us">AIK IBF (B)</span>
+              <span class="sep">vs</span>
+              <span class="team ">Hagunda IBF</span>
+            </div>
+            <div class="meta">
+              <span class="time">15:00–16:30</span>
+              <span class="dot">&middot;</span>
+              <span class="venue home">Home</span>
+              <span class="dot">&middot;</span>
+              <span class="location">Ulriksdalshallen , Solna</span>
+            </div>
+            <div class="group">Pantamera Herrjuniorer Division 3 Norra</div>
+          </div>
+        </div>
+<h2 class="month">January 2027</h2>
+
+        <div class="event league-pantamera-pojkar-2010-b-c" data-league="pantamera-pojkar-2010-b-c">
+          <div class="date">
+            <span class="weekday">Sat</span>
+            <span class="day">9</span>
+          </div>
+          <div class="details">
+            <div class="teams">
+              <span class="team ">Vaxholms IBF</span>
               <span class="sep">vs</span>
               <span class="team us">AIK IBF</span>
             </div>
             <div class="meta">
-              <span class="time">15:00–16:15</span>
+              <span class="time">16:45–18:00</span>
               <span class="dot">&middot;</span>
               <span class="venue away">Away</span>
               <span class="dot">&middot;</span>
-              <span class="location">Hägerneholmshallen , Täby</span>
+              <span class="location">Vaxholm innebandyhallen, Vaxholm</span>
             </div>
-            <div class="group">Pantamera Pojkar 2012 B Norra</div>
+            <div class="group">Pantamera Pojkar 2010 B/C</div>
           </div>
         </div>
 
@@ -824,6 +1420,50 @@
 
         <div class="event league-pantamera-pojkar-2012-b-norra" data-league="pantamera-pojkar-2012-b-norra">
           <div class="date">
+            <span class="weekday">Sun</span>
+            <span class="day">10</span>
+          </div>
+          <div class="details">
+            <div class="teams">
+              <span class="team ">Täby FC (C)</span>
+              <span class="sep">vs</span>
+              <span class="team us">AIK IBF</span>
+            </div>
+            <div class="meta">
+              <span class="time">16:45–18:00</span>
+              <span class="dot">&middot;</span>
+              <span class="venue away">Away</span>
+              <span class="dot">&middot;</span>
+              <span class="location">Hägerneholmshallen , Täby</span>
+            </div>
+            <div class="group">Pantamera Pojkar 2012 B Norra</div>
+          </div>
+        </div>
+
+        <div class="event league-pantamera-herrjuniorer-division-3-norra" data-league="pantamera-herrjuniorer-division-3-norra">
+          <div class="date">
+            <span class="weekday">Sun</span>
+            <span class="day">10</span>
+          </div>
+          <div class="details">
+            <div class="teams">
+              <span class="team ">Hässelby SK IBK (D)</span>
+              <span class="sep">vs</span>
+              <span class="team us">AIK IBF (B)</span>
+            </div>
+            <div class="meta">
+              <span class="time">17:30–19:00</span>
+              <span class="dot">&middot;</span>
+              <span class="venue away">Away</span>
+              <span class="dot">&middot;</span>
+              <span class="location">Hässelbyhallen , Stockholm</span>
+            </div>
+            <div class="group">Pantamera Herrjuniorer Division 3 Norra</div>
+          </div>
+        </div>
+
+        <div class="event league-pantamera-pojkar-2012-b-norra" data-league="pantamera-pojkar-2012-b-norra">
+          <div class="date">
             <span class="weekday">Sat</span>
             <span class="day">16</span>
           </div>
@@ -841,6 +1481,28 @@
               <span class="location">Bagartorpshallen , Solna</span>
             </div>
             <div class="group">Pantamera Pojkar 2012 B Norra</div>
+          </div>
+        </div>
+
+        <div class="event league-pantamera-herrjuniorer-division-3-norra" data-league="pantamera-herrjuniorer-division-3-norra">
+          <div class="date">
+            <span class="weekday">Sat</span>
+            <span class="day">16</span>
+          </div>
+          <div class="details">
+            <div class="teams">
+              <span class="team us">AIK IBF (B)</span>
+              <span class="sep">vs</span>
+              <span class="team ">Täby FC (C)</span>
+            </div>
+            <div class="meta">
+              <span class="time">15:00–16:30</span>
+              <span class="dot">&middot;</span>
+              <span class="venue home">Home</span>
+              <span class="dot">&middot;</span>
+              <span class="location">Bagartorpshallen , Solna</span>
+            </div>
+            <div class="group">Pantamera Herrjuniorer Division 3 Norra</div>
           </div>
         </div>
 
@@ -863,6 +1525,50 @@
               <span class="location">Ormingehallen , Nacka</span>
             </div>
             <div class="group">Pantamera Pojkar 2013 C Norra</div>
+          </div>
+        </div>
+
+        <div class="event league-pantamera-pojkar-2010-b-c" data-league="pantamera-pojkar-2010-b-c">
+          <div class="date">
+            <span class="weekday">Sat</span>
+            <span class="day">16</span>
+          </div>
+          <div class="details">
+            <div class="teams">
+              <span class="team us">AIK IBF</span>
+              <span class="sep">vs</span>
+              <span class="team ">Huddinge IBS</span>
+            </div>
+            <div class="meta">
+              <span class="time">16:30–17:45</span>
+              <span class="dot">&middot;</span>
+              <span class="venue home">Home</span>
+              <span class="dot">&middot;</span>
+              <span class="location">Bagartorpshallen , Solna</span>
+            </div>
+            <div class="group">Pantamera Pojkar 2010 B/C</div>
+          </div>
+        </div>
+
+        <div class="event league-pantamera-pojkar-2010-b-c" data-league="pantamera-pojkar-2010-b-c">
+          <div class="date">
+            <span class="weekday">Sat</span>
+            <span class="day">23</span>
+          </div>
+          <div class="details">
+            <div class="teams">
+              <span class="team ">Skogås/Trångsunds IBK</span>
+              <span class="sep">vs</span>
+              <span class="team us">AIK IBF</span>
+            </div>
+            <div class="meta">
+              <span class="time">13:45–15:00</span>
+              <span class="dot">&middot;</span>
+              <span class="venue away">Away</span>
+              <span class="dot">&middot;</span>
+              <span class="location">Skogåshallen , Huddinge</span>
+            </div>
+            <div class="group">Pantamera Pojkar 2010 B/C</div>
           </div>
         </div>
 
@@ -907,6 +1613,28 @@
               <span class="location">Tallbackaskolan , Solna</span>
             </div>
             <div class="group">Pantamera Pojkar 2013 C Norra</div>
+          </div>
+        </div>
+
+        <div class="event league-pantamera-pojkar-2010-b-c" data-league="pantamera-pojkar-2010-b-c">
+          <div class="date">
+            <span class="weekday">Sat</span>
+            <span class="day">30</span>
+          </div>
+          <div class="details">
+            <div class="teams">
+              <span class="team us">AIK IBF</span>
+              <span class="sep">vs</span>
+              <span class="team ">Värmdö IF</span>
+            </div>
+            <div class="meta">
+              <span class="time">15:15–16:30</span>
+              <span class="dot">&middot;</span>
+              <span class="venue home">Home</span>
+              <span class="dot">&middot;</span>
+              <span class="location">Bagartorpshallen , Solna</span>
+            </div>
+            <div class="group">Pantamera Pojkar 2010 B/C</div>
           </div>
         </div>
 
@@ -977,6 +1705,28 @@
           </div>
         </div>
 
+        <div class="event league-pantamera-pojkar-2010-b-c" data-league="pantamera-pojkar-2010-b-c">
+          <div class="date">
+            <span class="weekday">Sat</span>
+            <span class="day">6</span>
+          </div>
+          <div class="details">
+            <div class="teams">
+              <span class="team ">FBI Tullinge</span>
+              <span class="sep">vs</span>
+              <span class="team us">AIK IBF</span>
+            </div>
+            <div class="meta">
+              <span class="time">19:00–20:15</span>
+              <span class="dot">&middot;</span>
+              <span class="venue away">Away</span>
+              <span class="dot">&middot;</span>
+              <span class="location">Trädgårdsstadshallen (Tullinge), Botkyrka</span>
+            </div>
+            <div class="group">Pantamera Pojkar 2010 B/C</div>
+          </div>
+        </div>
+
         <div class="event league-pantamera-pojkar-2012-b-norra" data-league="pantamera-pojkar-2012-b-norra">
           <div class="date">
             <span class="weekday">Sun</span>
@@ -996,6 +1746,28 @@
               <span class="location">Ulriksdalshallen , Solna</span>
             </div>
             <div class="group">Pantamera Pojkar 2012 B Norra</div>
+          </div>
+        </div>
+
+        <div class="event league-pantamera-herrjuniorer-division-3-norra" data-league="pantamera-herrjuniorer-division-3-norra">
+          <div class="date">
+            <span class="weekday">Sun</span>
+            <span class="day">7</span>
+          </div>
+          <div class="details">
+            <div class="teams">
+              <span class="team us">AIK IBF (B)</span>
+              <span class="sep">vs</span>
+              <span class="team ">Vaxholms IBF</span>
+            </div>
+            <div class="meta">
+              <span class="time">18:30–20:00</span>
+              <span class="dot">&middot;</span>
+              <span class="venue home">Home</span>
+              <span class="dot">&middot;</span>
+              <span class="location">Ulriksdalshallen , Solna</span>
+            </div>
+            <div class="group">Pantamera Herrjuniorer Division 3 Norra</div>
           </div>
         </div>
 
@@ -1043,6 +1815,28 @@
           </div>
         </div>
 
+        <div class="event league-pantamera-pojkar-2010-b-c" data-league="pantamera-pojkar-2010-b-c">
+          <div class="date">
+            <span class="weekday">Sat</span>
+            <span class="day">20</span>
+          </div>
+          <div class="details">
+            <div class="teams">
+              <span class="team us">AIK IBF</span>
+              <span class="sep">vs</span>
+              <span class="team ">FBC Sollentuna</span>
+            </div>
+            <div class="meta">
+              <span class="time">16:45–18:00</span>
+              <span class="dot">&middot;</span>
+              <span class="venue home">Home</span>
+              <span class="dot">&middot;</span>
+              <span class="location">Bagartorpshallen , Solna</span>
+            </div>
+            <div class="group">Pantamera Pojkar 2010 B/C</div>
+          </div>
+        </div>
+
         <div class="event league-pantamera-pojkar-2012-b-norra" data-league="pantamera-pojkar-2012-b-norra">
           <div class="date">
             <span class="weekday">Sun</span>
@@ -1086,7 +1880,95 @@
             <div class="group">Pantamera Pojkar 2013 C Norra</div>
           </div>
         </div>
+
+        <div class="event league-pantamera-herrjuniorer-division-3-norra" data-league="pantamera-herrjuniorer-division-3-norra">
+          <div class="date">
+            <span class="weekday">Sun</span>
+            <span class="day">21</span>
+          </div>
+          <div class="details">
+            <div class="teams">
+              <span class="team us">AIK IBF (B)</span>
+              <span class="sep">vs</span>
+              <span class="team ">Åkersberga IBF (B)</span>
+            </div>
+            <div class="meta">
+              <span class="time">17:00–18:30</span>
+              <span class="dot">&middot;</span>
+              <span class="venue home">Home</span>
+              <span class="dot">&middot;</span>
+              <span class="location">Ulriksdalshallen , Solna</span>
+            </div>
+            <div class="group">Pantamera Herrjuniorer Division 3 Norra</div>
+          </div>
+        </div>
+
+        <div class="event league-pantamera-pojkar-2010-b-c" data-league="pantamera-pojkar-2010-b-c">
+          <div class="date">
+            <span class="weekday">Sun</span>
+            <span class="day">28</span>
+          </div>
+          <div class="details">
+            <div class="teams">
+              <span class="team ">Visby IBK</span>
+              <span class="sep">vs</span>
+              <span class="team us">AIK IBF</span>
+            </div>
+            <div class="meta">
+              <span class="time">10:30–11:45</span>
+              <span class="dot">&middot;</span>
+              <span class="venue away">Away</span>
+              <span class="dot">&middot;</span>
+              <span class="location">Södervärnshallen , Gotland</span>
+            </div>
+            <div class="group">Pantamera Pojkar 2010 B/C</div>
+          </div>
+        </div>
 <h2 class="month">March 2027</h2>
+
+        <div class="event league-pantamera-herrjuniorer-division-3-norra" data-league="pantamera-herrjuniorer-division-3-norra">
+          <div class="date">
+            <span class="weekday">Sat</span>
+            <span class="day">6</span>
+          </div>
+          <div class="details">
+            <div class="teams">
+              <span class="team ">Vallentuna IBK (B)</span>
+              <span class="sep">vs</span>
+              <span class="team us">AIK IBF (B)</span>
+            </div>
+            <div class="meta">
+              <span class="time">16:00–17:30</span>
+              <span class="dot">&middot;</span>
+              <span class="venue away">Away</span>
+              <span class="dot">&middot;</span>
+              <span class="location">Rosendalsskolan Norra Sporthall, Vallentuna</span>
+            </div>
+            <div class="group">Pantamera Herrjuniorer Division 3 Norra</div>
+          </div>
+        </div>
+
+        <div class="event league-pantamera-pojkar-2010-b-c" data-league="pantamera-pojkar-2010-b-c">
+          <div class="date">
+            <span class="weekday">Sun</span>
+            <span class="day">14</span>
+          </div>
+          <div class="details">
+            <div class="teams">
+              <span class="team us">AIK IBF</span>
+              <span class="sep">vs</span>
+              <span class="team ">Järfälla Bele IBK (A)</span>
+            </div>
+            <div class="meta">
+              <span class="time">09:45–11:00</span>
+              <span class="dot">&middot;</span>
+              <span class="venue home">Home</span>
+              <span class="dot">&middot;</span>
+              <span class="location">Ulriksdalshallen , Solna</span>
+            </div>
+            <div class="group">Pantamera Pojkar 2010 B/C</div>
+          </div>
+        </div>
 
         <div class="event league-pantamera-pojkar-2013-c-norra" data-league="pantamera-pojkar-2013-c-norra">
           <div class="date">
@@ -1097,10 +1979,10 @@
             <div class="teams">
               <span class="team us">AIK IBF</span>
               <span class="sep">vs</span>
-              <span class="team ">Älvsjö AIK IBF</span>
+              <span class="team ">Väsby AIK</span>
             </div>
             <div class="meta">
-              <span class="time">13:15–14:30</span>
+              <span class="time">12:15–13:30</span>
               <span class="dot">&middot;</span>
               <span class="venue home">Home</span>
               <span class="dot">&middot;</span>
@@ -1132,6 +2014,50 @@
           </div>
         </div>
 
+        <div class="event league-pantamera-herrjuniorer-division-3-norra" data-league="pantamera-herrjuniorer-division-3-norra">
+          <div class="date">
+            <span class="weekday">Sun</span>
+            <span class="day">14</span>
+          </div>
+          <div class="details">
+            <div class="teams">
+              <span class="team us">AIK IBF (B)</span>
+              <span class="sep">vs</span>
+              <span class="team ">Järfälla Bele IBK (C)</span>
+            </div>
+            <div class="meta">
+              <span class="time">15:15–16:45</span>
+              <span class="dot">&middot;</span>
+              <span class="venue home">Home</span>
+              <span class="dot">&middot;</span>
+              <span class="location">Ulriksdalshallen , Solna</span>
+            </div>
+            <div class="group">Pantamera Herrjuniorer Division 3 Norra</div>
+          </div>
+        </div>
+
+        <div class="event league-pantamera-herrjuniorer-division-3-norra" data-league="pantamera-herrjuniorer-division-3-norra">
+          <div class="date">
+            <span class="weekday">Sat</span>
+            <span class="day">20</span>
+          </div>
+          <div class="details">
+            <div class="teams">
+              <span class="team ">IK Sirius FBC</span>
+              <span class="sep">vs</span>
+              <span class="team us">AIK IBF (B)</span>
+            </div>
+            <div class="meta">
+              <span class="time">00:00–01:30</span>
+              <span class="dot">&middot;</span>
+              <span class="venue away">Away</span>
+              <span class="dot">&middot;</span>
+              <span class="location">IFU Arena DHinox (D)             , Uppsala</span>
+            </div>
+            <div class="group">Pantamera Herrjuniorer Division 3 Norra</div>
+          </div>
+        </div>
+
         <div class="event league-pantamera-pojkar-2012-b-norra" data-league="pantamera-pojkar-2012-b-norra">
           <div class="date">
             <span class="weekday">Sat</span>
@@ -1144,13 +2070,35 @@
               <span class="team ">Duvbo IK (A)</span>
             </div>
             <div class="meta">
-              <span class="time">12:15–13:30</span>
+              <span class="time">15:15–16:30</span>
               <span class="dot">&middot;</span>
               <span class="venue home">Home</span>
               <span class="dot">&middot;</span>
               <span class="location">Bagartorpshallen , Solna</span>
             </div>
             <div class="group">Pantamera Pojkar 2012 B Norra</div>
+          </div>
+        </div>
+
+        <div class="event league-pantamera-pojkar-2010-b-c" data-league="pantamera-pojkar-2010-b-c">
+          <div class="date">
+            <span class="weekday">Sat</span>
+            <span class="day">20</span>
+          </div>
+          <div class="details">
+            <div class="teams">
+              <span class="team ">Älvsjö AIK IBF (A)</span>
+              <span class="sep">vs</span>
+              <span class="team us">AIK IBF</span>
+            </div>
+            <div class="meta">
+              <span class="time">16:30–17:45</span>
+              <span class="dot">&middot;</span>
+              <span class="venue away">Away</span>
+              <span class="dot">&middot;</span>
+              <span class="location">Kämpetorpshallen  1, Stockholm</span>
+            </div>
+            <div class="group">Pantamera Pojkar 2010 B/C</div>
           </div>
         </div>
 
@@ -1198,8 +2146,24 @@
         h.style.display = anyVisible ? '' : 'none';
       });
     }
+    function syncGroupToggle(groupCb) {
+      const children = [...document.querySelectorAll('.league-toggle')].filter(cb => cb.dataset.group === groupCb.dataset.group);
+      const checkedCount = children.filter(cb => cb.checked).length;
+      groupCb.checked = checkedCount === children.length;
+      groupCb.indeterminate = checkedCount > 0 && checkedCount < children.length;
+    }
     document.getElementById('hidePast').addEventListener('change', applyFilters);
-    document.querySelectorAll('.league-toggle').forEach(cb => cb.addEventListener('change', applyFilters));
+    document.querySelectorAll('.league-toggle').forEach(cb => cb.addEventListener('change', () => {
+      document.querySelectorAll('.group-toggle').forEach(syncGroupToggle);
+      applyFilters();
+    }));
+    document.querySelectorAll('.group-toggle').forEach(groupCb => groupCb.addEventListener('change', () => {
+      document.querySelectorAll('.league-toggle').forEach(cb => {
+        if (cb.dataset.group === groupCb.dataset.group) cb.checked = groupCb.checked;
+      });
+      groupCb.indeterminate = false;
+      applyFilters();
+    }));
   </script>
 </body>
 </html>

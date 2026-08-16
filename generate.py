@@ -10,23 +10,32 @@ import re
 import urllib.request
 from datetime import datetime
 
-CALENDAR_URL = "https://api.innebandy.se/v2/api/calendars/team/117199"
+CALENDARS = [
+    ("117199", "https://api.innebandy.se/v2/api/calendars/team/117199", "AIK p12/13"),
+    ("126811", "https://api.innebandy.se/v2/api/calendars/team/126811", "AIK Utveckling"),
+]
 OUTPUT_FILE = "index.html"
-OUR_TEAM = "AIK IBF"
+OUR_TEAM = {"AIK IBF", "AIK IBF (B)", "AIK IBF Utveckling"}
 
 COLOR_YELLOW = {"bg": "#fff3c4", "bg_dark": "rgba(240,196,25,0.16)", "accent": "#8a6d00", "accent_dark": "#f0c419"}
 COLOR_GRAY = {"bg": "#e2e4e8", "bg_dark": "rgba(255,255,255,0.07)", "accent": "#374151", "accent_dark": "#d1d5db"}
 COLOR_BLUE = {"bg": "#dbe9fe", "bg_dark": "rgba(37,99,235,0.18)", "accent": "#1d4ed8", "accent_dark": "#60a5fa"}
-COLOR_GREEN = {"bg": "#dcf7e3", "bg_dark": "rgba(16,185,129,0.16)", "accent": "#047857", "accent_dark": "#34d399"}
-COLOR_PURPLE = {"bg": "#f3e1fb", "bg_dark": "rgba(168,85,247,0.18)", "accent": "#7e22ce", "accent_dark": "#c084fc"}
+COLOR_GREEN_1 = {"bg": "#dcf7e3", "bg_dark": "rgba(16,185,129,0.16)", "accent": "#047857", "accent_dark": "#34d399"}
+COLOR_GREEN_2 = {"bg": "#e6f9d5", "bg_dark": "rgba(101,163,13,0.18)", "accent": "#3f6212", "accent_dark": "#a3e635"}
+COLOR_GREEN_3 = {"bg": "#d3f5ec", "bg_dark": "rgba(13,148,136,0.18)", "accent": "#0f766e", "accent_dark": "#5eead4"}
+COLOR_GREEN_4 = {"bg": "#e5f3d8", "bg_dark": "rgba(77,124,15,0.18)", "accent": "#4d7c0f", "accent_dark": "#bef264"}
 
 # Explicit color per known league. Leagues not listed here fall back to FALLBACK_PALETTE, in order.
 LEAGUE_COLORS = {
     "Bäst i Stan Pojkar 14 - Grupp B": COLOR_BLUE,
     "Pantamera Pojkar 2012 B Norra": COLOR_YELLOW,
     "Pantamera Pojkar 2013 C Norra": COLOR_GRAY,
+    "Pantamera Pojkar 2010 B/C": COLOR_GREEN_1,
+    "Bäst i Stan Pojkar 15 - Grupp C": COLOR_GREEN_2,
+    "Pantamera Herrjuniorer Division 3 Norra": COLOR_GREEN_3,
+    "Träningsmatcher Herr": COLOR_GREEN_4,
 }
-FALLBACK_PALETTE = [COLOR_GREEN, COLOR_PURPLE]
+FALLBACK_PALETTE = [COLOR_GREEN_1, COLOR_GREEN_2, COLOR_GREEN_3, COLOR_GREEN_4]
 
 
 def slugify(text: str) -> str:
@@ -82,6 +91,8 @@ def parse_events(lines: list[str]) -> list[dict]:
             current["location"] = value.replace("\\,", ",").replace("\\;", ";")
         elif name == "STATUS":
             current["status"] = value
+        elif name == "UID":
+            current["uid"] = value
     return events
 
 
@@ -107,7 +118,7 @@ WEEKDAY_NAMES = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
 
 
 def is_our_team(name: str) -> bool:
-    return name.strip().casefold() == OUR_TEAM.casefold()
+    return name.strip().casefold() in {t.casefold() for t in OUR_TEAM}
 
 
 def render_html(events: list[dict]) -> str:
@@ -123,6 +134,12 @@ def render_html(events: list[dict]) -> str:
             color = FALLBACK_PALETTE[fallback_i % len(FALLBACK_PALETTE)]
             fallback_i += 1
         league_style[name] = {**color, "slug": slugify(name)}
+
+    league_calendar = {}
+    for e in events:
+        group = split_teams(e.get("summary", ""))[2]
+        if group and group not in league_calendar:
+            league_calendar[group] = e.get("calendar", "")
 
     rows = []
     current_month = None
@@ -180,10 +197,16 @@ def render_html(events: list[dict]) -> str:
 
     league_toggles = "\n".join(f'''
       <label class="toggle league-toggle-label">
-        <input type="checkbox" class="league-toggle" data-league="{s["slug"]}" checked>
+        <input type="checkbox" class="league-toggle" data-league="{s["slug"]}" data-group="{league_calendar.get(name, "")}" checked>
         <span class="swatch" style="background:{s["accent"]}"></span>
         {html.escape(name)}
       </label>''' for name, s in league_style.items())
+
+    group_toggles = "\n".join(f'''
+      <label class="toggle group-toggle-label">
+        <input type="checkbox" class="group-toggle" data-group="{cal_id}" checked>
+        {html.escape(cal_label)}
+      </label>''' for cal_id, _url, cal_label in CALENDARS)
 
     return f"""<!doctype html>
 <html lang="en">
@@ -295,6 +318,17 @@ def render_html(events: list[dict]) -> str:
   .filters .past-row {{
     margin-bottom: 0.5rem;
   }}
+  .filters .group-row {{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1rem;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }}
+  .filters .group-toggle-label {{
+    font-weight: 600;
+  }}
   .filters .league-row {{
     display: flex;
     flex-wrap: wrap;
@@ -328,6 +362,9 @@ def render_html(events: list[dict]) -> str:
             Hide past matches
           </label>
         </div>
+        <div class="group-row">
+          {group_toggles}
+        </div>
         <div class="league-row">
           {league_toggles}
         </div>
@@ -358,8 +395,24 @@ def render_html(events: list[dict]) -> str:
         h.style.display = anyVisible ? '' : 'none';
       }});
     }}
+    function syncGroupToggle(groupCb) {{
+      const children = [...document.querySelectorAll('.league-toggle')].filter(cb => cb.dataset.group === groupCb.dataset.group);
+      const checkedCount = children.filter(cb => cb.checked).length;
+      groupCb.checked = checkedCount === children.length;
+      groupCb.indeterminate = checkedCount > 0 && checkedCount < children.length;
+    }}
     document.getElementById('hidePast').addEventListener('change', applyFilters);
-    document.querySelectorAll('.league-toggle').forEach(cb => cb.addEventListener('change', applyFilters));
+    document.querySelectorAll('.league-toggle').forEach(cb => cb.addEventListener('change', () => {{
+      document.querySelectorAll('.group-toggle').forEach(syncGroupToggle);
+      applyFilters();
+    }}));
+    document.querySelectorAll('.group-toggle').forEach(groupCb => groupCb.addEventListener('change', () => {{
+      document.querySelectorAll('.league-toggle').forEach(cb => {{
+        if (cb.dataset.group === groupCb.dataset.group) cb.checked = groupCb.checked;
+      }});
+      groupCb.indeterminate = false;
+      applyFilters();
+    }}));
   </script>
 </body>
 </html>
@@ -367,9 +420,14 @@ def render_html(events: list[dict]) -> str:
 
 
 def main():
-    raw = fetch_ics(CALENDAR_URL)
-    lines = unfold_lines(raw)
-    events = parse_events(lines)
+    events = []
+    for cal_id, url, _label in CALENDARS:
+        raw = fetch_ics(url)
+        lines = unfold_lines(raw)
+        cal_events = parse_events(lines)
+        for e in cal_events:
+            e["calendar"] = cal_id
+        events.extend(cal_events)
     out = render_html(events)
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
         f.write(out)
