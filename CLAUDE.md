@@ -125,6 +125,20 @@ fixture that is currently filtered out of view.
   group toggle's checked/indeterminate state in sync when an individual
   league checkbox changes.
 - Events are grouped under month headings and sorted chronologically.
+- Filter choices persist per browser via `localStorage` under the key
+  `aik-ibf-schedule-filters-v1` — `saveFilters()` on every toggle,
+  `restoreFilters()` on load, then a `syncGroupToggle()` pass and
+  `applyFilters()`. `localStorage`, not cookies: the page is static on GitHub
+  Pages, so nothing server-side would ever read a cookie. The key is
+  namespaced because `<user>.github.io` serves every one of that user's Pages
+  sites from a single origin, which shares one `localStorage`.
+- What gets stored is the list of leagues switched **off** (`hiddenLeagues`),
+  not the ones switched on, so a league that appears in the feed later shows
+  up by default instead of being silently hidden by an older saved state. A
+  stored slug that no longer exists is simply ignored. Group toggles are not
+  stored — they are re-derived from the league checkboxes on load.
+- Reads and writes are wrapped in try/catch, so private mode or storage-
+  blocked browsers just lose persistence rather than breaking the page.
 
 ## Known constraints / things to watch if the feed changes
 
