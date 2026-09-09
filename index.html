@@ -204,7 +204,7 @@
   <div class="wrap">
     <header>
       <h1>AIK IBF – Match Schedule</h1>
-      <div class="sub">Generated 2026-09-09 11:10 from api.innebandy.se</div>
+      <div class="sub">Generated 2026-09-09 11:25 from api.innebandy.se</div>
       <div class="filters">
         <div class="past-row">
           <label class="toggle">
@@ -2550,9 +2550,48 @@
       groupCb.checked = checkedCount === children.length;
       groupCb.indeterminate = checkedCount > 0 && checkedCount < children.length;
     }
-    document.getElementById('hidePast').addEventListener('change', applyFilters);
+    // Filter choices persist per browser. localStorage, not cookies: the page is
+    // static (GitHub Pages), so no server ever reads them and a cookie would only
+    // add weight to every request. Note that user.github.io shares one origin
+    // across all of that user's Pages sites, hence the namespaced key.
+    const STORAGE_KEY = 'aik-ibf-schedule-filters-v1';
+
+    function saveFilters() {
+      // Store which leagues are OFF, not which are ON, so a league added to the
+      // feed later shows up by default instead of silently staying hidden.
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({
+          hidePast: document.getElementById('hidePast').checked,
+          hiddenLeagues: [...document.querySelectorAll('.league-toggle:not(:checked)')]
+            .map(cb => cb.dataset.league),
+        }));
+      } catch (e) {
+        // Private mode or storage disabled — filters just won't persist.
+      }
+    }
+
+    function restoreFilters() {
+      let saved = null;
+      try {
+        saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
+      } catch (e) {
+        return;
+      }
+      if (!saved) return;
+      document.getElementById('hidePast').checked = !!saved.hidePast;
+      const hidden = new Set(saved.hiddenLeagues || []);
+      document.querySelectorAll('.league-toggle').forEach(cb => {
+        cb.checked = !hidden.has(cb.dataset.league);
+      });
+    }
+
+    document.getElementById('hidePast').addEventListener('change', () => {
+      saveFilters();
+      applyFilters();
+    });
     document.querySelectorAll('.league-toggle').forEach(cb => cb.addEventListener('change', () => {
       document.querySelectorAll('.group-toggle').forEach(syncGroupToggle);
+      saveFilters();
       applyFilters();
     }));
     document.querySelectorAll('.group-toggle').forEach(groupCb => groupCb.addEventListener('change', () => {
@@ -2560,8 +2599,13 @@
         if (cb.dataset.group === groupCb.dataset.group) cb.checked = groupCb.checked;
       });
       groupCb.indeterminate = false;
+      saveFilters();
       applyFilters();
     }));
+
+    restoreFilters();
+    document.querySelectorAll('.group-toggle').forEach(syncGroupToggle);
+    applyFilters();
   </script>
 </body>
 </html>
