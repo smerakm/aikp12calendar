@@ -87,9 +87,14 @@
     .event.league-pantamera-pojkar-2013-c-norra { background: rgba(255,255,255,0.07); border-left-color: #d1d5db; }
   }
 
-  .event.league-tr-ningsmatcher-stockholm { background: #dcf7e3; border-left: 4px solid #047857; }
+  .event.league-pantamera-pojkar-2014-a-norra { background: #ffe8cc; border-left: 4px solid #c2410c; }
   @media (prefers-color-scheme: dark) {
-    .event.league-tr-ningsmatcher-stockholm { background: rgba(16,185,129,0.16); border-left-color: #34d399; }
+    .event.league-pantamera-pojkar-2014-a-norra { background: rgba(249,115,22,0.18); border-left-color: #fdba74; }
+  }
+
+  .event.league-tr-ningsmatcher-stockholm { background: #e5f3d8; border-left: 4px solid #4d7c0f; }
+  @media (prefers-color-scheme: dark) {
+    .event.league-tr-ningsmatcher-stockholm { background: rgba(77,124,15,0.18); border-left-color: #bef264; }
   }
   .date {
     flex: 0 0 3rem;
@@ -128,6 +133,27 @@
   }
   .venue.away { font-weight: 600; }
   .group { margin-top: 0.2rem; font-size: 0.78rem; color: var(--muted); }
+  .conflict {
+    flex: 0 0 auto;
+    align-self: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.4rem;
+    height: 1.4rem;
+    border-radius: 50%;
+    background: #dc2626;
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: 700;
+    line-height: 1;
+    cursor: help;
+  }
+  .conflict.spaced { background: #111827; }
+  @media (prefers-color-scheme: dark) {
+    .conflict { background: #ef4444; }
+    .conflict.spaced { background: #05070c; border: 1px solid rgba(255,255,255,0.45); }
+  }
   .empty { color: var(--muted); }
   footer {
     max-width: 720px;
@@ -178,7 +204,7 @@
   <div class="wrap">
     <header>
       <h1>AIK IBF – Match Schedule</h1>
-      <div class="sub">Generated 2026-09-09 10:15 from api.innebandy.se</div>
+      <div class="sub">Generated 2026-09-09 11:10 from api.innebandy.se</div>
       <div class="filters">
         <div class="past-row">
           <label class="toggle">
@@ -196,6 +222,11 @@
       <label class="toggle group-toggle-label">
         <input type="checkbox" class="group-toggle" data-group="126811" checked>
         AIK Utveckling
+      </label>
+
+      <label class="toggle group-toggle-label">
+        <input type="checkbox" class="group-toggle" data-group="121632" checked>
+        AIK p14 Vit
       </label>
         </div>
         <div class="league-row">
@@ -237,8 +268,14 @@
       </label>
 
       <label class="toggle league-toggle-label">
+        <input type="checkbox" class="league-toggle" data-league="pantamera-pojkar-2014-a-norra" data-group="121632" checked>
+        <span class="swatch" style="background:#c2410c"></span>
+        Pantamera Pojkar 2014 A Norra
+      </label>
+
+      <label class="toggle league-toggle-label">
         <input type="checkbox" class="league-toggle" data-league="tr-ningsmatcher-stockholm" data-group="117199" checked>
-        <span class="swatch" style="background:#047857"></span>
+        <span class="swatch" style="background:#4d7c0f"></span>
         Träningsmatcher Stockholm
       </label>
         </div>
@@ -267,6 +304,7 @@
             </div>
             <div class="group">Träningsmatcher Stockholm</div>
           </div>
+          
         </div>
 <h2 class="month">September 2026</h2>
 
@@ -290,6 +328,7 @@
             </div>
             <div class="group">Bäst i Stan Pojkar 15 - Grupp C</div>
           </div>
+          
         </div>
 
         <div class="event league-b-st-i-stan-pojkar-15-grupp-c past" data-league="b-st-i-stan-pojkar-15-grupp-c">
@@ -312,6 +351,7 @@
             </div>
             <div class="group">Bäst i Stan Pojkar 15 - Grupp C</div>
           </div>
+          
         </div>
 
         <div class="event league-b-st-i-stan-pojkar-15-grupp-c past" data-league="b-st-i-stan-pojkar-15-grupp-c">
@@ -334,6 +374,7 @@
             </div>
             <div class="group">Bäst i Stan Pojkar 15 - Grupp C</div>
           </div>
+          
         </div>
 
         <div class="event league-b-st-i-stan-pojkar-14-grupp-b" data-league="b-st-i-stan-pojkar-14-grupp-b">
@@ -356,6 +397,7 @@
             </div>
             <div class="group">Bäst i Stan Pojkar 14 - Grupp B</div>
           </div>
+          
         </div>
 
         <div class="event league-b-st-i-stan-pojkar-14-grupp-b" data-league="b-st-i-stan-pojkar-14-grupp-b">
@@ -378,6 +420,7 @@
             </div>
             <div class="group">Bäst i Stan Pojkar 14 - Grupp B</div>
           </div>
+          
         </div>
 
         <div class="event league-pantamera-herrjuniorer-division-3-norra" data-league="pantamera-herrjuniorer-division-3-norra">
@@ -400,6 +443,7 @@
             </div>
             <div class="group">Pantamera Herrjuniorer Division 3 Norra</div>
           </div>
+          
         </div>
 
         <div class="event league-b-st-i-stan-pojkar-14-grupp-b" data-league="b-st-i-stan-pojkar-14-grupp-b">
@@ -422,6 +466,7 @@
             </div>
             <div class="group">Bäst i Stan Pojkar 14 - Grupp B</div>
           </div>
+          
         </div>
 
         <div class="event league-pantamera-pojkar-2012-b-norra" data-league="pantamera-pojkar-2012-b-norra">
@@ -444,6 +489,7 @@
             </div>
             <div class="group">Pantamera Pojkar 2012 B Norra</div>
           </div>
+          <span class="conflict tight" role="img" aria-label="Same-day clash with Pantamera Herrjuniorer Division 3 Norra, Pantamera Pojkar 2010 B/C (0min apart)" title="Same-day clash with Pantamera Herrjuniorer Division 3 Norra, Pantamera Pojkar 2010 B/C (0min apart)">!</span>
         </div>
 
         <div class="event league-pantamera-herrjuniorer-division-3-norra" data-league="pantamera-herrjuniorer-division-3-norra">
@@ -466,6 +512,7 @@
             </div>
             <div class="group">Pantamera Herrjuniorer Division 3 Norra</div>
           </div>
+          <span class="conflict tight" role="img" aria-label="Same-day clash with Pantamera Pojkar 2012 B Norra (0min apart)" title="Same-day clash with Pantamera Pojkar 2012 B Norra (0min apart)">!</span>
         </div>
 
         <div class="event league-pantamera-pojkar-2010-b-c" data-league="pantamera-pojkar-2010-b-c">
@@ -488,6 +535,30 @@
             </div>
             <div class="group">Pantamera Pojkar 2010 B/C</div>
           </div>
+          <span class="conflict tight" role="img" aria-label="Same-day clash with Pantamera Pojkar 2012 B Norra (30min apart)" title="Same-day clash with Pantamera Pojkar 2012 B Norra (30min apart)">!</span>
+        </div>
+
+        <div class="event league-pantamera-pojkar-2014-a-norra" data-league="pantamera-pojkar-2014-a-norra">
+          <div class="date">
+            <span class="weekday">Sun</span>
+            <span class="day">27</span>
+          </div>
+          <div class="details">
+            <div class="teams">
+              <span class="team ">Hässelby SK IBK</span>
+              <span class="sep">vs</span>
+              <span class="team us">AIK IBF</span>
+            </div>
+            <div class="meta">
+              <span class="time">08:30–09:45</span>
+              <span class="dot">&middot;</span>
+              <span class="venue away">Away</span>
+              <span class="dot">&middot;</span>
+              <span class="location">Hässelbyhallen , Stockholm</span>
+            </div>
+            <div class="group">Pantamera Pojkar 2014 A Norra</div>
+          </div>
+          
         </div>
 <h2 class="month">October 2026</h2>
 
@@ -511,6 +582,7 @@
             </div>
             <div class="group">Pantamera Herrjuniorer Division 3 Norra</div>
           </div>
+          
         </div>
 
         <div class="event league-pantamera-pojkar-2010-b-c" data-league="pantamera-pojkar-2010-b-c">
@@ -533,6 +605,30 @@
             </div>
             <div class="group">Pantamera Pojkar 2010 B/C</div>
           </div>
+          
+        </div>
+
+        <div class="event league-pantamera-pojkar-2014-a-norra" data-league="pantamera-pojkar-2014-a-norra">
+          <div class="date">
+            <span class="weekday">Sun</span>
+            <span class="day">4</span>
+          </div>
+          <div class="details">
+            <div class="teams">
+              <span class="team us">AIK IBF</span>
+              <span class="sep">vs</span>
+              <span class="team ">Järfälla Bele IBK</span>
+            </div>
+            <div class="meta">
+              <span class="time">14:30–15:45</span>
+              <span class="dot">&middot;</span>
+              <span class="venue home">Home</span>
+              <span class="dot">&middot;</span>
+              <span class="location">Ulriksdalshallen , Solna</span>
+            </div>
+            <div class="group">Pantamera Pojkar 2014 A Norra</div>
+          </div>
+          
         </div>
 
         <div class="event league-pantamera-pojkar-2010-b-c" data-league="pantamera-pojkar-2010-b-c">
@@ -555,6 +651,7 @@
             </div>
             <div class="group">Pantamera Pojkar 2010 B/C</div>
           </div>
+          <span class="conflict spaced" role="img" aria-label="Same-day clash with Pantamera Pojkar 2012 B Norra (3h 30min apart)" title="Same-day clash with Pantamera Pojkar 2012 B Norra (3h 30min apart)">!</span>
         </div>
 
         <div class="event league-pantamera-pojkar-2013-c-norra" data-league="pantamera-pojkar-2013-c-norra">
@@ -577,6 +674,30 @@
             </div>
             <div class="group">Pantamera Pojkar 2013 C Norra</div>
           </div>
+          <span class="conflict tight" role="img" aria-label="Same-day clash with Pantamera Pojkar 2014 A Norra (1h apart)" title="Same-day clash with Pantamera Pojkar 2014 A Norra (1h apart)">!</span>
+        </div>
+
+        <div class="event league-pantamera-pojkar-2014-a-norra" data-league="pantamera-pojkar-2014-a-norra">
+          <div class="date">
+            <span class="weekday">Sun</span>
+            <span class="day">11</span>
+          </div>
+          <div class="details">
+            <div class="teams">
+              <span class="team us">AIK IBF</span>
+              <span class="sep">vs</span>
+              <span class="team ">Åkersberga IBF</span>
+            </div>
+            <div class="meta">
+              <span class="time">15:00–16:15</span>
+              <span class="dot">&middot;</span>
+              <span class="venue home">Home</span>
+              <span class="dot">&middot;</span>
+              <span class="location">Ulriksdalshallen , Solna</span>
+            </div>
+            <div class="group">Pantamera Pojkar 2014 A Norra</div>
+          </div>
+          <span class="conflict tight" role="img" aria-label="Same-day clash with Pantamera Pojkar 2013 C Norra (1h apart)" title="Same-day clash with Pantamera Pojkar 2013 C Norra (1h apart)">!</span>
         </div>
 
         <div class="event league-pantamera-pojkar-2012-b-norra" data-league="pantamera-pojkar-2012-b-norra">
@@ -599,6 +720,7 @@
             </div>
             <div class="group">Pantamera Pojkar 2012 B Norra</div>
           </div>
+          <span class="conflict spaced" role="img" aria-label="Same-day clash with Pantamera Pojkar 2010 B/C (3h 30min apart)" title="Same-day clash with Pantamera Pojkar 2010 B/C (3h 30min apart)">!</span>
         </div>
 
         <div class="event league-pantamera-herrjuniorer-division-3-norra" data-league="pantamera-herrjuniorer-division-3-norra">
@@ -621,6 +743,7 @@
             </div>
             <div class="group">Pantamera Herrjuniorer Division 3 Norra</div>
           </div>
+          
         </div>
 
         <div class="event league-pantamera-pojkar-2013-c-norra" data-league="pantamera-pojkar-2013-c-norra">
@@ -643,6 +766,7 @@
             </div>
             <div class="group">Pantamera Pojkar 2013 C Norra</div>
           </div>
+          
         </div>
 
         <div class="event league-pantamera-pojkar-2012-b-norra" data-league="pantamera-pojkar-2012-b-norra">
@@ -665,6 +789,30 @@
             </div>
             <div class="group">Pantamera Pojkar 2012 B Norra</div>
           </div>
+          <span class="conflict tight" role="img" aria-label="Same-day clash with Pantamera Pojkar 2010 B/C (15min apart)" title="Same-day clash with Pantamera Pojkar 2010 B/C (15min apart)">!</span>
+        </div>
+
+        <div class="event league-pantamera-pojkar-2014-a-norra" data-league="pantamera-pojkar-2014-a-norra">
+          <div class="date">
+            <span class="weekday">Sun</span>
+            <span class="day">18</span>
+          </div>
+          <div class="details">
+            <div class="teams">
+              <span class="team us">AIK IBF</span>
+              <span class="sep">vs</span>
+              <span class="team ">Huddinge IBS (B)</span>
+            </div>
+            <div class="meta">
+              <span class="time">15:30–16:45</span>
+              <span class="dot">&middot;</span>
+              <span class="venue home">Home</span>
+              <span class="dot">&middot;</span>
+              <span class="location">Ulriksdalshallen , Solna</span>
+            </div>
+            <div class="group">Pantamera Pojkar 2014 A Norra</div>
+          </div>
+          
         </div>
 
         <div class="event league-pantamera-pojkar-2010-b-c" data-league="pantamera-pojkar-2010-b-c">
@@ -687,6 +835,7 @@
             </div>
             <div class="group">Pantamera Pojkar 2010 B/C</div>
           </div>
+          <span class="conflict tight" role="img" aria-label="Same-day clash with Pantamera Pojkar 2012 B Norra (15min apart)" title="Same-day clash with Pantamera Pojkar 2012 B Norra (15min apart)">!</span>
         </div>
 
         <div class="event league-pantamera-pojkar-2012-b-norra" data-league="pantamera-pojkar-2012-b-norra">
@@ -709,6 +858,7 @@
             </div>
             <div class="group">Pantamera Pojkar 2012 B Norra</div>
           </div>
+          
         </div>
 
         <div class="event league-pantamera-pojkar-2012-b-norra" data-league="pantamera-pojkar-2012-b-norra">
@@ -731,6 +881,7 @@
             </div>
             <div class="group">Pantamera Pojkar 2012 B Norra</div>
           </div>
+          
         </div>
 
         <div class="event league-pantamera-pojkar-2013-c-norra" data-league="pantamera-pojkar-2013-c-norra">
@@ -753,6 +904,7 @@
             </div>
             <div class="group">Pantamera Pojkar 2013 C Norra</div>
           </div>
+          
         </div>
 
         <div class="event league-pantamera-pojkar-2013-c-norra" data-league="pantamera-pojkar-2013-c-norra">
@@ -775,6 +927,7 @@
             </div>
             <div class="group">Pantamera Pojkar 2013 C Norra</div>
           </div>
+          
         </div>
 
         <div class="event league-pantamera-pojkar-2010-b-c" data-league="pantamera-pojkar-2010-b-c">
@@ -797,6 +950,7 @@
             </div>
             <div class="group">Pantamera Pojkar 2010 B/C</div>
           </div>
+          
         </div>
 
         <div class="event league-pantamera-pojkar-2010-b-c" data-league="pantamera-pojkar-2010-b-c">
@@ -819,6 +973,7 @@
             </div>
             <div class="group">Pantamera Pojkar 2010 B/C</div>
           </div>
+          
         </div>
 <h2 class="month">November 2026</h2>
 
@@ -842,6 +997,7 @@
             </div>
             <div class="group">Pantamera Pojkar 2013 C Norra</div>
           </div>
+          
         </div>
 
         <div class="event league-pantamera-pojkar-2012-b-norra" data-league="pantamera-pojkar-2012-b-norra">
@@ -864,6 +1020,53 @@
             </div>
             <div class="group">Pantamera Pojkar 2012 B Norra</div>
           </div>
+          
+        </div>
+
+        <div class="event league-pantamera-pojkar-2014-a-norra" data-league="pantamera-pojkar-2014-a-norra">
+          <div class="date">
+            <span class="weekday">Sun</span>
+            <span class="day">8</span>
+          </div>
+          <div class="details">
+            <div class="teams">
+              <span class="team ">Vallentuna IBK</span>
+              <span class="sep">vs</span>
+              <span class="team us">AIK IBF</span>
+            </div>
+            <div class="meta">
+              <span class="time">13:15–14:30</span>
+              <span class="dot">&middot;</span>
+              <span class="venue away">Away</span>
+              <span class="dot">&middot;</span>
+              <span class="location">Rosendalsskolan Norra Sporthall, Vallentuna</span>
+            </div>
+            <div class="group">Pantamera Pojkar 2014 A Norra</div>
+          </div>
+          
+        </div>
+
+        <div class="event league-pantamera-pojkar-2014-a-norra" data-league="pantamera-pojkar-2014-a-norra">
+          <div class="date">
+            <span class="weekday">Sun</span>
+            <span class="day">15</span>
+          </div>
+          <div class="details">
+            <div class="teams">
+              <span class="team us">AIK IBF</span>
+              <span class="sep">vs</span>
+              <span class="team ">Kungsängens IF (B)</span>
+            </div>
+            <div class="meta">
+              <span class="time">11:45–13:00</span>
+              <span class="dot">&middot;</span>
+              <span class="venue home">Home</span>
+              <span class="dot">&middot;</span>
+              <span class="location">Ulriksdalshallen , Solna</span>
+            </div>
+            <div class="group">Pantamera Pojkar 2014 A Norra</div>
+          </div>
+          <span class="conflict spaced" role="img" aria-label="Same-day clash with Pantamera Pojkar 2013 C Norra (2h 45min apart)" title="Same-day clash with Pantamera Pojkar 2013 C Norra (2h 45min apart)">!</span>
         </div>
 
         <div class="event league-pantamera-pojkar-2012-b-norra" data-league="pantamera-pojkar-2012-b-norra">
@@ -886,6 +1089,7 @@
             </div>
             <div class="group">Pantamera Pojkar 2012 B Norra</div>
           </div>
+          <span class="conflict tight" role="img" aria-label="Same-day clash with Pantamera Herrjuniorer Division 3 Norra, Pantamera Pojkar 2010 B/C (1h 15min apart)" title="Same-day clash with Pantamera Herrjuniorer Division 3 Norra, Pantamera Pojkar 2010 B/C (1h 15min apart)">!</span>
         </div>
 
         <div class="event league-pantamera-pojkar-2010-b-c" data-league="pantamera-pojkar-2010-b-c">
@@ -908,6 +1112,7 @@
             </div>
             <div class="group">Pantamera Pojkar 2010 B/C</div>
           </div>
+          <span class="conflict tight" role="img" aria-label="Same-day clash with Pantamera Pojkar 2012 B Norra (1h 15min apart)" title="Same-day clash with Pantamera Pojkar 2012 B Norra (1h 15min apart)">!</span>
         </div>
 
         <div class="event league-pantamera-pojkar-2013-c-norra" data-league="pantamera-pojkar-2013-c-norra">
@@ -930,6 +1135,7 @@
             </div>
             <div class="group">Pantamera Pojkar 2013 C Norra</div>
           </div>
+          <span class="conflict spaced" role="img" aria-label="Same-day clash with Pantamera Pojkar 2014 A Norra (2h 45min apart)" title="Same-day clash with Pantamera Pojkar 2014 A Norra (2h 45min apart)">!</span>
         </div>
 
         <div class="event league-pantamera-herrjuniorer-division-3-norra" data-league="pantamera-herrjuniorer-division-3-norra">
@@ -952,6 +1158,7 @@
             </div>
             <div class="group">Pantamera Herrjuniorer Division 3 Norra</div>
           </div>
+          <span class="conflict spaced" role="img" aria-label="Same-day clash with Pantamera Pojkar 2012 B Norra (4h 15min apart)" title="Same-day clash with Pantamera Pojkar 2012 B Norra (4h 15min apart)">!</span>
         </div>
 
         <div class="event league-pantamera-pojkar-2013-c-norra" data-league="pantamera-pojkar-2013-c-norra">
@@ -974,6 +1181,7 @@
             </div>
             <div class="group">Pantamera Pojkar 2013 C Norra</div>
           </div>
+          
         </div>
 
         <div class="event league-pantamera-pojkar-2010-b-c" data-league="pantamera-pojkar-2010-b-c">
@@ -996,6 +1204,7 @@
             </div>
             <div class="group">Pantamera Pojkar 2010 B/C</div>
           </div>
+          <span class="conflict spaced" role="img" aria-label="Same-day clash with Pantamera Pojkar 2012 B Norra (3h apart)" title="Same-day clash with Pantamera Pojkar 2012 B Norra (3h apart)">!</span>
         </div>
 
         <div class="event league-pantamera-pojkar-2012-b-norra" data-league="pantamera-pojkar-2012-b-norra">
@@ -1018,6 +1227,7 @@
             </div>
             <div class="group">Pantamera Pojkar 2012 B Norra</div>
           </div>
+          <span class="conflict tight" role="img" aria-label="Same-day clash with Pantamera Herrjuniorer Division 3 Norra, Pantamera Pojkar 2010 B/C (overlapping)" title="Same-day clash with Pantamera Herrjuniorer Division 3 Norra, Pantamera Pojkar 2010 B/C (overlapping)">!</span>
         </div>
 
         <div class="event league-pantamera-herrjuniorer-division-3-norra" data-league="pantamera-herrjuniorer-division-3-norra">
@@ -1040,6 +1250,53 @@
             </div>
             <div class="group">Pantamera Herrjuniorer Division 3 Norra</div>
           </div>
+          <span class="conflict tight" role="img" aria-label="Same-day clash with Pantamera Pojkar 2012 B Norra (overlapping)" title="Same-day clash with Pantamera Pojkar 2012 B Norra (overlapping)">!</span>
+        </div>
+
+        <div class="event league-pantamera-pojkar-2014-a-norra" data-league="pantamera-pojkar-2014-a-norra">
+          <div class="date">
+            <span class="weekday">Sun</span>
+            <span class="day">22</span>
+          </div>
+          <div class="details">
+            <div class="teams">
+              <span class="team us">AIK IBF</span>
+              <span class="sep">vs</span>
+              <span class="team ">Älvsjö AIK IBF</span>
+            </div>
+            <div class="meta">
+              <span class="time">16:45–18:00</span>
+              <span class="dot">&middot;</span>
+              <span class="venue home">Home</span>
+              <span class="dot">&middot;</span>
+              <span class="location">Ulriksdalshallen , Solna</span>
+            </div>
+            <div class="group">Pantamera Pojkar 2014 A Norra</div>
+          </div>
+          
+        </div>
+
+        <div class="event league-pantamera-pojkar-2014-a-norra" data-league="pantamera-pojkar-2014-a-norra">
+          <div class="date">
+            <span class="weekday">Fri</span>
+            <span class="day">27</span>
+          </div>
+          <div class="details">
+            <div class="teams">
+              <span class="team ">Täby FC</span>
+              <span class="sep">vs</span>
+              <span class="team us">AIK IBF</span>
+            </div>
+            <div class="meta">
+              <span class="time">19:00–20:15</span>
+              <span class="dot">&middot;</span>
+              <span class="venue away">Away</span>
+              <span class="dot">&middot;</span>
+              <span class="location">Grindtorpshallen , Täby</span>
+            </div>
+            <div class="group">Pantamera Pojkar 2014 A Norra</div>
+          </div>
+          
         </div>
 
         <div class="event league-pantamera-pojkar-2012-b-norra" data-league="pantamera-pojkar-2012-b-norra">
@@ -1062,6 +1319,7 @@
             </div>
             <div class="group">Pantamera Pojkar 2012 B Norra</div>
           </div>
+          
         </div>
 
         <div class="event league-pantamera-pojkar-2013-c-norra" data-league="pantamera-pojkar-2013-c-norra">
@@ -1084,6 +1342,7 @@
             </div>
             <div class="group">Pantamera Pojkar 2013 C Norra</div>
           </div>
+          
         </div>
 
         <div class="event league-pantamera-herrjuniorer-division-3-norra" data-league="pantamera-herrjuniorer-division-3-norra">
@@ -1106,6 +1365,7 @@
             </div>
             <div class="group">Pantamera Herrjuniorer Division 3 Norra</div>
           </div>
+          
         </div>
 <h2 class="month">December 2026</h2>
 
@@ -1129,6 +1389,7 @@
             </div>
             <div class="group">Pantamera Pojkar 2010 B/C</div>
           </div>
+          <span class="conflict tight" role="img" aria-label="Same-day clash with Pantamera Pojkar 2012 B Norra (30min apart)" title="Same-day clash with Pantamera Pojkar 2012 B Norra (30min apart)">!</span>
         </div>
 
         <div class="event league-pantamera-pojkar-2012-b-norra" data-league="pantamera-pojkar-2012-b-norra">
@@ -1151,6 +1412,7 @@
             </div>
             <div class="group">Pantamera Pojkar 2012 B Norra</div>
           </div>
+          <span class="conflict tight" role="img" aria-label="Same-day clash with Pantamera Pojkar 2010 B/C (30min apart)" title="Same-day clash with Pantamera Pojkar 2010 B/C (30min apart)">!</span>
         </div>
 
         <div class="event league-pantamera-herrjuniorer-division-3-norra" data-league="pantamera-herrjuniorer-division-3-norra">
@@ -1173,6 +1435,30 @@
             </div>
             <div class="group">Pantamera Herrjuniorer Division 3 Norra</div>
           </div>
+          
+        </div>
+
+        <div class="event league-pantamera-pojkar-2014-a-norra" data-league="pantamera-pojkar-2014-a-norra">
+          <div class="date">
+            <span class="weekday">Sat</span>
+            <span class="day">12</span>
+          </div>
+          <div class="details">
+            <div class="teams">
+              <span class="team us">AIK IBF</span>
+              <span class="sep">vs</span>
+              <span class="team ">Hässelby SK IBK</span>
+            </div>
+            <div class="meta">
+              <span class="time">14:30–15:45</span>
+              <span class="dot">&middot;</span>
+              <span class="venue home">Home</span>
+              <span class="dot">&middot;</span>
+              <span class="location">Bagartorpshallen , Solna</span>
+            </div>
+            <div class="group">Pantamera Pojkar 2014 A Norra</div>
+          </div>
+          
         </div>
 
         <div class="event league-pantamera-pojkar-2010-b-c" data-league="pantamera-pojkar-2010-b-c">
@@ -1195,6 +1481,7 @@
             </div>
             <div class="group">Pantamera Pojkar 2010 B/C</div>
           </div>
+          <span class="conflict tight" role="img" aria-label="Same-day clash with Pantamera Pojkar 2012 B Norra (1h 45min apart)" title="Same-day clash with Pantamera Pojkar 2012 B Norra (1h 45min apart)">!</span>
         </div>
 
         <div class="event league-pantamera-herrjuniorer-division-3-norra" data-league="pantamera-herrjuniorer-division-3-norra">
@@ -1217,6 +1504,7 @@
             </div>
             <div class="group">Pantamera Herrjuniorer Division 3 Norra</div>
           </div>
+          <span class="conflict tight" role="img" aria-label="Same-day clash with Pantamera Pojkar 2012 B Norra (overlapping)" title="Same-day clash with Pantamera Pojkar 2012 B Norra (overlapping)">!</span>
         </div>
 
         <div class="event league-pantamera-pojkar-2012-b-norra" data-league="pantamera-pojkar-2012-b-norra">
@@ -1239,6 +1527,30 @@
             </div>
             <div class="group">Pantamera Pojkar 2012 B Norra</div>
           </div>
+          <span class="conflict tight" role="img" aria-label="Same-day clash with Pantamera Herrjuniorer Division 3 Norra, Pantamera Pojkar 2010 B/C (overlapping)" title="Same-day clash with Pantamera Herrjuniorer Division 3 Norra, Pantamera Pojkar 2010 B/C (overlapping)">!</span>
+        </div>
+
+        <div class="event league-pantamera-pojkar-2014-a-norra" data-league="pantamera-pojkar-2014-a-norra">
+          <div class="date">
+            <span class="weekday">Sun</span>
+            <span class="day">20</span>
+          </div>
+          <div class="details">
+            <div class="teams">
+              <span class="team ">Järfälla Bele IBK</span>
+              <span class="sep">vs</span>
+              <span class="team us">AIK IBF</span>
+            </div>
+            <div class="meta">
+              <span class="time">11:30–12:45</span>
+              <span class="dot">&middot;</span>
+              <span class="venue away">Away</span>
+              <span class="dot">&middot;</span>
+              <span class="location">Björkebyhallen , Järfälla</span>
+            </div>
+            <div class="group">Pantamera Pojkar 2014 A Norra</div>
+          </div>
+          
         </div>
 
         <div class="event league-pantamera-pojkar-2010-b-c" data-league="pantamera-pojkar-2010-b-c">
@@ -1261,6 +1573,7 @@
             </div>
             <div class="group">Pantamera Pojkar 2010 B/C</div>
           </div>
+          
         </div>
 
         <div class="event league-pantamera-herrjuniorer-division-3-norra" data-league="pantamera-herrjuniorer-division-3-norra">
@@ -1283,6 +1596,7 @@
             </div>
             <div class="group">Pantamera Herrjuniorer Division 3 Norra</div>
           </div>
+          
         </div>
 <h2 class="month">January 2027</h2>
 
@@ -1306,6 +1620,7 @@
             </div>
             <div class="group">Pantamera Pojkar 2010 B/C</div>
           </div>
+          <span class="conflict spaced" role="img" aria-label="Same-day clash with Pantamera Pojkar 2012 B Norra (2h 15min apart)" title="Same-day clash with Pantamera Pojkar 2012 B Norra (2h 15min apart)">!</span>
         </div>
 
         <div class="event league-pantamera-pojkar-2013-c-norra" data-league="pantamera-pojkar-2013-c-norra">
@@ -1328,6 +1643,7 @@
             </div>
             <div class="group">Pantamera Pojkar 2013 C Norra</div>
           </div>
+          
         </div>
 
         <div class="event league-pantamera-pojkar-2012-b-norra" data-league="pantamera-pojkar-2012-b-norra">
@@ -1350,6 +1666,7 @@
             </div>
             <div class="group">Pantamera Pojkar 2012 B Norra</div>
           </div>
+          <span class="conflict tight" role="img" aria-label="Same-day clash with Pantamera Herrjuniorer Division 3 Norra, Pantamera Pojkar 2010 B/C (overlapping)" title="Same-day clash with Pantamera Herrjuniorer Division 3 Norra, Pantamera Pojkar 2010 B/C (overlapping)">!</span>
         </div>
 
         <div class="event league-pantamera-herrjuniorer-division-3-norra" data-league="pantamera-herrjuniorer-division-3-norra">
@@ -1372,6 +1689,30 @@
             </div>
             <div class="group">Pantamera Herrjuniorer Division 3 Norra</div>
           </div>
+          <span class="conflict tight" role="img" aria-label="Same-day clash with Pantamera Pojkar 2012 B Norra (overlapping)" title="Same-day clash with Pantamera Pojkar 2012 B Norra (overlapping)">!</span>
+        </div>
+
+        <div class="event league-pantamera-pojkar-2014-a-norra" data-league="pantamera-pojkar-2014-a-norra">
+          <div class="date">
+            <span class="weekday">Sat</span>
+            <span class="day">16</span>
+          </div>
+          <div class="details">
+            <div class="teams">
+              <span class="team ">Åkersberga IBF</span>
+              <span class="sep">vs</span>
+              <span class="team us">AIK IBF</span>
+            </div>
+            <div class="meta">
+              <span class="time">09:00–10:15</span>
+              <span class="dot">&middot;</span>
+              <span class="venue away">Away</span>
+              <span class="dot">&middot;</span>
+              <span class="location">Österåkers Multiarena Plan 1 - Ljusterö, Österåker</span>
+            </div>
+            <div class="group">Pantamera Pojkar 2014 A Norra</div>
+          </div>
+          <span class="conflict spaced" role="img" aria-label="Same-day clash with Pantamera Pojkar 2013 C Norra (5h 30min apart)" title="Same-day clash with Pantamera Pojkar 2013 C Norra (5h 30min apart)">!</span>
         </div>
 
         <div class="event league-pantamera-pojkar-2012-b-norra" data-league="pantamera-pojkar-2012-b-norra">
@@ -1394,6 +1735,7 @@
             </div>
             <div class="group">Pantamera Pojkar 2012 B Norra</div>
           </div>
+          <span class="conflict tight" role="img" aria-label="Same-day clash with Pantamera Herrjuniorer Division 3 Norra, Pantamera Pojkar 2010 B/C (1h 30min apart)" title="Same-day clash with Pantamera Herrjuniorer Division 3 Norra, Pantamera Pojkar 2010 B/C (1h 30min apart)">!</span>
         </div>
 
         <div class="event league-pantamera-herrjuniorer-division-3-norra" data-league="pantamera-herrjuniorer-division-3-norra">
@@ -1416,6 +1758,7 @@
             </div>
             <div class="group">Pantamera Herrjuniorer Division 3 Norra</div>
           </div>
+          <span class="conflict tight" role="img" aria-label="Same-day clash with Pantamera Pojkar 2012 B Norra (1h 30min apart)" title="Same-day clash with Pantamera Pojkar 2012 B Norra (1h 30min apart)">!</span>
         </div>
 
         <div class="event league-pantamera-pojkar-2013-c-norra" data-league="pantamera-pojkar-2013-c-norra">
@@ -1438,6 +1781,7 @@
             </div>
             <div class="group">Pantamera Pojkar 2013 C Norra</div>
           </div>
+          <span class="conflict spaced" role="img" aria-label="Same-day clash with Pantamera Pojkar 2014 A Norra (5h 30min apart)" title="Same-day clash with Pantamera Pojkar 2014 A Norra (5h 30min apart)">!</span>
         </div>
 
         <div class="event league-pantamera-pojkar-2010-b-c" data-league="pantamera-pojkar-2010-b-c">
@@ -1460,6 +1804,30 @@
             </div>
             <div class="group">Pantamera Pojkar 2010 B/C</div>
           </div>
+          <span class="conflict spaced" role="img" aria-label="Same-day clash with Pantamera Pojkar 2012 B Norra (3h apart)" title="Same-day clash with Pantamera Pojkar 2012 B Norra (3h apart)">!</span>
+        </div>
+
+        <div class="event league-pantamera-pojkar-2014-a-norra" data-league="pantamera-pojkar-2014-a-norra">
+          <div class="date">
+            <span class="weekday">Sat</span>
+            <span class="day">23</span>
+          </div>
+          <div class="details">
+            <div class="teams">
+              <span class="team ">Huddinge IBS (B)</span>
+              <span class="sep">vs</span>
+              <span class="team us">AIK IBF</span>
+            </div>
+            <div class="meta">
+              <span class="time">14:45–16:00</span>
+              <span class="dot">&middot;</span>
+              <span class="venue away">Away</span>
+              <span class="dot">&middot;</span>
+              <span class="location">Glömstahallen , Huddinge</span>
+            </div>
+            <div class="group">Pantamera Pojkar 2014 A Norra</div>
+          </div>
+          
         </div>
 
         <div class="event league-pantamera-pojkar-2012-b-norra" data-league="pantamera-pojkar-2012-b-norra">
@@ -1482,6 +1850,7 @@
             </div>
             <div class="group">Pantamera Pojkar 2012 B Norra</div>
           </div>
+          
         </div>
 
         <div class="event league-pantamera-pojkar-2010-b-c" data-league="pantamera-pojkar-2010-b-c">
@@ -1504,6 +1873,7 @@
             </div>
             <div class="group">Pantamera Pojkar 2010 B/C</div>
           </div>
+          
         </div>
 
         <div class="event league-pantamera-pojkar-2013-c-norra" data-league="pantamera-pojkar-2013-c-norra">
@@ -1526,6 +1896,7 @@
             </div>
             <div class="group">Pantamera Pojkar 2013 C Norra</div>
           </div>
+          
         </div>
 
         <div class="event league-pantamera-pojkar-2010-b-c" data-league="pantamera-pojkar-2010-b-c">
@@ -1548,6 +1919,7 @@
             </div>
             <div class="group">Pantamera Pojkar 2010 B/C</div>
           </div>
+          
         </div>
 
         <div class="event league-pantamera-pojkar-2013-c-norra" data-league="pantamera-pojkar-2013-c-norra">
@@ -1570,6 +1942,30 @@
             </div>
             <div class="group">Pantamera Pojkar 2013 C Norra</div>
           </div>
+          
+        </div>
+
+        <div class="event league-pantamera-pojkar-2014-a-norra" data-league="pantamera-pojkar-2014-a-norra">
+          <div class="date">
+            <span class="weekday">Sun</span>
+            <span class="day">31</span>
+          </div>
+          <div class="details">
+            <div class="teams">
+              <span class="team us">AIK IBF</span>
+              <span class="sep">vs</span>
+              <span class="team ">Vallentuna IBK</span>
+            </div>
+            <div class="meta">
+              <span class="time">13:30–14:45</span>
+              <span class="dot">&middot;</span>
+              <span class="venue home">Home</span>
+              <span class="dot">&middot;</span>
+              <span class="location">Ulriksdalshallen , Solna</span>
+            </div>
+            <div class="group">Pantamera Pojkar 2014 A Norra</div>
+          </div>
+          
         </div>
 
         <div class="event league-pantamera-pojkar-2012-b-norra" data-league="pantamera-pojkar-2012-b-norra">
@@ -1592,6 +1988,7 @@
             </div>
             <div class="group">Pantamera Pojkar 2012 B Norra</div>
           </div>
+          
         </div>
 <h2 class="month">February 2027</h2>
 
@@ -1615,6 +2012,7 @@
             </div>
             <div class="group">Pantamera Pojkar 2013 C Norra</div>
           </div>
+          
         </div>
 
         <div class="event league-pantamera-pojkar-2010-b-c" data-league="pantamera-pojkar-2010-b-c">
@@ -1637,6 +2035,30 @@
             </div>
             <div class="group">Pantamera Pojkar 2010 B/C</div>
           </div>
+          
+        </div>
+
+        <div class="event league-pantamera-pojkar-2014-a-norra" data-league="pantamera-pojkar-2014-a-norra">
+          <div class="date">
+            <span class="weekday">Sun</span>
+            <span class="day">7</span>
+          </div>
+          <div class="details">
+            <div class="teams">
+              <span class="team ">Kungsängens IF (B)</span>
+              <span class="sep">vs</span>
+              <span class="team us">AIK IBF</span>
+            </div>
+            <div class="meta">
+              <span class="time">13:45–15:00</span>
+              <span class="dot">&middot;</span>
+              <span class="venue away">Away</span>
+              <span class="dot">&middot;</span>
+              <span class="location">Kungshallen Sporthallen, Upplands-Bro</span>
+            </div>
+            <div class="group">Pantamera Pojkar 2014 A Norra</div>
+          </div>
+          
         </div>
 
         <div class="event league-pantamera-pojkar-2012-b-norra" data-league="pantamera-pojkar-2012-b-norra">
@@ -1659,6 +2081,7 @@
             </div>
             <div class="group">Pantamera Pojkar 2012 B Norra</div>
           </div>
+          <span class="conflict tight" role="img" aria-label="Same-day clash with Pantamera Herrjuniorer Division 3 Norra (0min apart)" title="Same-day clash with Pantamera Herrjuniorer Division 3 Norra (0min apart)">!</span>
         </div>
 
         <div class="event league-pantamera-herrjuniorer-division-3-norra" data-league="pantamera-herrjuniorer-division-3-norra">
@@ -1681,6 +2104,7 @@
             </div>
             <div class="group">Pantamera Herrjuniorer Division 3 Norra</div>
           </div>
+          <span class="conflict tight" role="img" aria-label="Same-day clash with Pantamera Pojkar 2012 B Norra (0min apart)" title="Same-day clash with Pantamera Pojkar 2012 B Norra (0min apart)">!</span>
         </div>
 
         <div class="event league-pantamera-pojkar-2013-c-norra" data-league="pantamera-pojkar-2013-c-norra">
@@ -1703,6 +2127,7 @@
             </div>
             <div class="group">Pantamera Pojkar 2013 C Norra</div>
           </div>
+          <span class="conflict spaced" role="img" aria-label="Same-day clash with Pantamera Pojkar 2014 A Norra (6h 45min apart)" title="Same-day clash with Pantamera Pojkar 2014 A Norra (6h 45min apart)">!</span>
         </div>
 
         <div class="event league-pantamera-herrjuniorer-division-3-norra" data-league="pantamera-herrjuniorer-division-3-norra">
@@ -1725,6 +2150,30 @@
             </div>
             <div class="group">Pantamera Herrjuniorer Division 3 Norra</div>
           </div>
+          
+        </div>
+
+        <div class="event league-pantamera-pojkar-2014-a-norra" data-league="pantamera-pojkar-2014-a-norra">
+          <div class="date">
+            <span class="weekday">Sat</span>
+            <span class="day">13</span>
+          </div>
+          <div class="details">
+            <div class="teams">
+              <span class="team ">Älvsjö AIK IBF</span>
+              <span class="sep">vs</span>
+              <span class="team us">AIK IBF</span>
+            </div>
+            <div class="meta">
+              <span class="time">17:30–18:45</span>
+              <span class="dot">&middot;</span>
+              <span class="venue away">Away</span>
+              <span class="dot">&middot;</span>
+              <span class="location">Kämpetorpshallen  1, Stockholm</span>
+            </div>
+            <div class="group">Pantamera Pojkar 2014 A Norra</div>
+          </div>
+          <span class="conflict spaced" role="img" aria-label="Same-day clash with Pantamera Pojkar 2013 C Norra (6h 45min apart)" title="Same-day clash with Pantamera Pojkar 2013 C Norra (6h 45min apart)">!</span>
         </div>
 
         <div class="event league-pantamera-pojkar-2012-b-norra" data-league="pantamera-pojkar-2012-b-norra">
@@ -1747,6 +2196,7 @@
             </div>
             <div class="group">Pantamera Pojkar 2012 B Norra</div>
           </div>
+          
         </div>
 
         <div class="event league-pantamera-pojkar-2010-b-c" data-league="pantamera-pojkar-2010-b-c">
@@ -1769,6 +2219,30 @@
             </div>
             <div class="group">Pantamera Pojkar 2010 B/C</div>
           </div>
+          
+        </div>
+
+        <div class="event league-pantamera-pojkar-2014-a-norra" data-league="pantamera-pojkar-2014-a-norra">
+          <div class="date">
+            <span class="weekday">Sun</span>
+            <span class="day">21</span>
+          </div>
+          <div class="details">
+            <div class="teams">
+              <span class="team us">AIK IBF</span>
+              <span class="sep">vs</span>
+              <span class="team ">Täby FC</span>
+            </div>
+            <div class="meta">
+              <span class="time">14:30–15:45</span>
+              <span class="dot">&middot;</span>
+              <span class="venue home">Home</span>
+              <span class="dot">&middot;</span>
+              <span class="location">Ulriksdalshallen , Solna</span>
+            </div>
+            <div class="group">Pantamera Pojkar 2014 A Norra</div>
+          </div>
+          <span class="conflict tight" role="img" aria-label="Same-day clash with Pantamera Pojkar 2013 C Norra (0min apart)" title="Same-day clash with Pantamera Pojkar 2013 C Norra (0min apart)">!</span>
         </div>
 
         <div class="event league-pantamera-pojkar-2012-b-norra" data-league="pantamera-pojkar-2012-b-norra">
@@ -1791,6 +2265,7 @@
             </div>
             <div class="group">Pantamera Pojkar 2012 B Norra</div>
           </div>
+          <span class="conflict tight" role="img" aria-label="Same-day clash with Pantamera Herrjuniorer Division 3 Norra (0min apart)" title="Same-day clash with Pantamera Herrjuniorer Division 3 Norra (0min apart)">!</span>
         </div>
 
         <div class="event league-pantamera-pojkar-2013-c-norra" data-league="pantamera-pojkar-2013-c-norra">
@@ -1813,6 +2288,7 @@
             </div>
             <div class="group">Pantamera Pojkar 2013 C Norra</div>
           </div>
+          <span class="conflict tight" role="img" aria-label="Same-day clash with Pantamera Pojkar 2014 A Norra (0min apart)" title="Same-day clash with Pantamera Pojkar 2014 A Norra (0min apart)">!</span>
         </div>
 
         <div class="event league-pantamera-herrjuniorer-division-3-norra" data-league="pantamera-herrjuniorer-division-3-norra">
@@ -1835,6 +2311,7 @@
             </div>
             <div class="group">Pantamera Herrjuniorer Division 3 Norra</div>
           </div>
+          <span class="conflict tight" role="img" aria-label="Same-day clash with Pantamera Pojkar 2012 B Norra (0min apart)" title="Same-day clash with Pantamera Pojkar 2012 B Norra (0min apart)">!</span>
         </div>
 
         <div class="event league-pantamera-pojkar-2010-b-c" data-league="pantamera-pojkar-2010-b-c">
@@ -1857,6 +2334,7 @@
             </div>
             <div class="group">Pantamera Pojkar 2010 B/C</div>
           </div>
+          
         </div>
 <h2 class="month">March 2027</h2>
 
@@ -1880,6 +2358,7 @@
             </div>
             <div class="group">Pantamera Herrjuniorer Division 3 Norra</div>
           </div>
+          
         </div>
 
         <div class="event league-pantamera-pojkar-2010-b-c" data-league="pantamera-pojkar-2010-b-c">
@@ -1902,6 +2381,7 @@
             </div>
             <div class="group">Pantamera Pojkar 2010 B/C</div>
           </div>
+          <span class="conflict spaced" role="img" aria-label="Same-day clash with Pantamera Pojkar 2012 B Norra (4h apart)" title="Same-day clash with Pantamera Pojkar 2012 B Norra (4h apart)">!</span>
         </div>
 
         <div class="event league-pantamera-pojkar-2013-c-norra" data-league="pantamera-pojkar-2013-c-norra">
@@ -1924,6 +2404,7 @@
             </div>
             <div class="group">Pantamera Pojkar 2013 C Norra</div>
           </div>
+          
         </div>
 
         <div class="event league-pantamera-pojkar-2012-b-norra" data-league="pantamera-pojkar-2012-b-norra">
@@ -1946,6 +2427,7 @@
             </div>
             <div class="group">Pantamera Pojkar 2012 B Norra</div>
           </div>
+          <span class="conflict tight" role="img" aria-label="Same-day clash with Pantamera Herrjuniorer Division 3 Norra, Pantamera Pojkar 2010 B/C (overlapping)" title="Same-day clash with Pantamera Herrjuniorer Division 3 Norra, Pantamera Pojkar 2010 B/C (overlapping)">!</span>
         </div>
 
         <div class="event league-pantamera-herrjuniorer-division-3-norra" data-league="pantamera-herrjuniorer-division-3-norra">
@@ -1968,6 +2450,7 @@
             </div>
             <div class="group">Pantamera Herrjuniorer Division 3 Norra</div>
           </div>
+          <span class="conflict tight" role="img" aria-label="Same-day clash with Pantamera Pojkar 2012 B Norra (overlapping)" title="Same-day clash with Pantamera Pojkar 2012 B Norra (overlapping)">!</span>
         </div>
 
         <div class="event league-pantamera-pojkar-2012-b-norra" data-league="pantamera-pojkar-2012-b-norra">
@@ -1990,6 +2473,7 @@
             </div>
             <div class="group">Pantamera Pojkar 2012 B Norra</div>
           </div>
+          <span class="conflict tight" role="img" aria-label="Same-day clash with Pantamera Pojkar 2010 B/C (1h apart)" title="Same-day clash with Pantamera Pojkar 2010 B/C (1h apart)">!</span>
         </div>
 
         <div class="event league-pantamera-pojkar-2010-b-c" data-league="pantamera-pojkar-2010-b-c">
@@ -2012,6 +2496,7 @@
             </div>
             <div class="group">Pantamera Pojkar 2010 B/C</div>
           </div>
+          <span class="conflict tight" role="img" aria-label="Same-day clash with Pantamera Pojkar 2012 B Norra (1h apart)" title="Same-day clash with Pantamera Pojkar 2012 B Norra (1h apart)">!</span>
         </div>
 
         <div class="event league-pantamera-herrjuniorer-division-3-norra" data-league="pantamera-herrjuniorer-division-3-norra">
@@ -2034,6 +2519,7 @@
             </div>
             <div class="group">Pantamera Herrjuniorer Division 3 Norra</div>
           </div>
+          
         </div>
     </div>
   </div>
