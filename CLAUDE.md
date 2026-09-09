@@ -12,10 +12,20 @@ public ICS calendar feed published by the Swedish Floorball Federation (IBIS).
   ```
 - `index.html` — generated output. Do not edit by hand; edit `generate.py`
   and regenerate instead.
+- `update.sh` — runs `generate.py`, then commits and pushes `index.html` if
+  it changed meaningfully. Run any time to refresh and publish:
+  ```
+  ./update.sh
+  ```
+  Before diffing, it strips the `Generated <timestamp> from
+  api.innebandy.se` line (via `strip_generated_line`) from both the newly
+  generated `index.html` and the last committed version, so a re-run that
+  only changes the timestamp is skipped — no commit/push. Otherwise it
+  commits with message `update <YYYY-MM-DD>` and pushes to the remote.
 
 ## Data source
 
-Two ICS feeds, both defined in the `CALENDARS` list in `generate.py`
+Three ICS feeds, all defined in the `CALENDARS` list in `generate.py`
 (`(calendar_id, url, group_label)` tuples), fetched fresh on every run —
 there is no caching or server component:
 
@@ -23,9 +33,11 @@ there is no caching or server component:
   ("AIK p12/13", boys 2012/2013 squads)
 - `https://api.innebandy.se/v2/api/calendars/team/126811` — team 126811
   ("AIK Utveckling", the "AIK IBF (B)" and "AIK IBF Utveckling" squads)
+- `https://api.innebandy.se/v2/api/calendars/team/121632` — team 121632
+  ("AIK p14 Vit", boys 2014; the feed names the team plain "AIK IBF")
 
-Events from both feeds are merged into one list; each event is stamped with
-`event["calendar"]` (the calendar_id) so the page can group leagues by
+Events from all three feeds are merged into one list; each event is stamped
+with `event["calendar"]` (the calendar_id) so the page can group leagues by
 which feed they came from.
 
 ## How events are parsed
@@ -52,22 +64,56 @@ defined in `LEAGUE_COLORS` in `generate.py`:
 - `Pantamera Pojkar 2010 B/C` — green (shade 1)
 - `Bäst i Stan Pojkar 15 - Grupp C` — green (shade 2)
 - `Pantamera Herrjuniorer Division 3 Norra` — green (shade 3)
-- `Träningsmatcher Herr` — green (shade 4)
+- `Träningsmatcher Stockholm` — green (shade 4)
+- `Pantamera Pojkar 2014 A Norra` — light orange (`COLOR_ORANGE`)
 
-The four leagues from the 126811 feed all use distinct shades of green
-(`COLOR_GREEN_1`–`COLOR_GREEN_4`) so they read as a family, distinct from
-the 117199 feed's blue/yellow/gray. Any future/unknown league falls back to
-`FALLBACK_PALETTE` (cycles through the same four greens) so the page
-doesn't break if a feed adds a new group. Each event's card gets a tinted
+The greens (`COLOR_GREEN_1`–`COLOR_GREEN_4`) were picked so the 126811 feed's
+leagues read as a family, distinct from the 117199 feed's blue/yellow/gray and
+the 121632 feed's orange. That mapping is no longer exact: IBIS renamed
+`Träningsmatcher Herr` to `Träningsmatcher Stockholm` and it now arrives on the
+117199 feed while keeping green (shade 4). Any
+future/unknown league falls back to `FALLBACK_PALETTE` (cycles through the
+same four greens) so the page doesn't break if a feed adds a new group.
+Each event's card gets a tinted
 background + colored left border in its league's color, with separate
 light/dark-mode values for both.
+
+## Conflict badges
+
+A circular `!` badge on the right edge of a card marks a fixture that clashes
+with another team's fixture **on the same calendar day**. Its color says how
+tight the clash is, measured as the idle time between the earlier game's end
+and the later game's start (`gap_between()`, negative when the two overlap):
+
+- **red** — under `CONFLICT_GAP` (2 hours) of slack, or overlapping
+- **black** — 2 hours or more between the two games, so both are makeable
+
+A card carrying several clashes is colored by its **tightest** one, and the
+hover text names every clashing league plus that tightest gap. Two cards in
+one clash can therefore differ in color: each is scored against its own worst
+partner, so a game 4h clear of its only partner stays black while that partner
+goes red over a third game.
+
+Which leagues can clash is an explicit whitelist, `CONFLICT_PAIRS` in
+`generate.py`, expanded into the undirected lookup `CONFLICTS` so both sides
+of a pair get flagged:
+
+- `Pantamera Pojkar 2012 B Norra` ↔ `Pantamera Pojkar 2010 B/C`
+- `Pantamera Pojkar 2012 B Norra` ↔ `Pantamera Herrjuniorer Division 3 Norra`
+- `Pantamera Pojkar 2013 C Norra` ↔ `Pantamera Pojkar 2014 A Norra`
+
+Any other league combination never conflicts, and a league never conflicts
+with itself. Badges are computed at generation time from all events, so they
+do **not** react to the league/group checkboxes — a badge can point at a
+fixture that is currently filtered out of view.
 
 ## Page behavior (client-side JS, no server)
 
 - "Hide past matches" checkbox — sits on its own row above the group/league
   toggles.
-- Two group toggles ("AIK p12/13", "AIK Utveckling") — one per calendar
-  feed, sit on their own row above the per-league toggles. Checking/
+- Three group toggles ("AIK p12/13", "AIK Utveckling", "AIK p14 Vit") — one
+  per calendar feed, sit on their own row above the per-league toggles.
+  Checking/
   unchecking one checks/unchecks every league belonging to that feed
   (matched via each league checkbox's `data-group` attribute, set from
   `event["calendar"]`). A group toggle shows an indeterminate (dash) state

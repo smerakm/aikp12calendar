@@ -8,11 +8,12 @@ Re-run any time to refresh index.html with the latest fixtures.
 import html
 import re
 import urllib.request
-from datetime import datetime
+from datetime import datetime, timedelta
 
 CALENDARS = [
     ("117199", "https://api.innebandy.se/v2/api/calendars/team/117199", "AIK p12/13"),
     ("126811", "https://api.innebandy.se/v2/api/calendars/team/126811", "AIK Utveckling"),
+    ("121632", "https://api.innebandy.se/v2/api/calendars/team/121632", "AIK p14 Vit"),
 ]
 OUTPUT_FILE = "index.html"
 OUR_TEAM = {"AIK IBF", "AIK IBF (B)", "AIK IBF Utveckling"}
@@ -24,6 +25,7 @@ COLOR_GREEN_1 = {"bg": "#dcf7e3", "bg_dark": "rgba(16,185,129,0.16)", "accent": 
 COLOR_GREEN_2 = {"bg": "#e6f9d5", "bg_dark": "rgba(101,163,13,0.18)", "accent": "#3f6212", "accent_dark": "#a3e635"}
 COLOR_GREEN_3 = {"bg": "#d3f5ec", "bg_dark": "rgba(13,148,136,0.18)", "accent": "#0f766e", "accent_dark": "#5eead4"}
 COLOR_GREEN_4 = {"bg": "#e5f3d8", "bg_dark": "rgba(77,124,15,0.18)", "accent": "#4d7c0f", "accent_dark": "#bef264"}
+COLOR_ORANGE = {"bg": "#ffe8cc", "bg_dark": "rgba(249,115,22,0.18)", "accent": "#c2410c", "accent_dark": "#fdba74"}
 
 # Explicit color per known league. Leagues not listed here fall back to FALLBACK_PALETTE, in order.
 LEAGUE_COLORS = {
@@ -33,9 +35,26 @@ LEAGUE_COLORS = {
     "Pantamera Pojkar 2010 B/C": COLOR_GREEN_1,
     "Bäst i Stan Pojkar 15 - Grupp C": COLOR_GREEN_2,
     "Pantamera Herrjuniorer Division 3 Norra": COLOR_GREEN_3,
-    "Träningsmatcher Herr": COLOR_GREEN_4,
+    "Träningsmatcher Stockholm": COLOR_GREEN_4,
+    "Pantamera Pojkar 2014 A Norra": COLOR_ORANGE,
 }
 FALLBACK_PALETTE = [COLOR_GREEN_1, COLOR_GREEN_2, COLOR_GREEN_3, COLOR_GREEN_4]
+
+# League pairs that clash when both play on the same day. Undirected: listing a
+# pair once marks the badge on events in both leagues. Leagues not paired here
+# never conflict, not even with themselves.
+CONFLICT_PAIRS = [
+    ("Pantamera Pojkar 2012 B Norra", "Pantamera Pojkar 2010 B/C"),
+    ("Pantamera Pojkar 2012 B Norra", "Pantamera Herrjuniorer Division 3 Norra"),
+    ("Pantamera Pojkar 2013 C Norra", "Pantamera Pojkar 2014 A Norra"),
+]
+# A clash with at least this much breathing room between the two games is
+# marked black (makeable); anything tighter stays red.
+CONFLICT_GAP = timedelta(hours=2)
+CONFLICTS: dict[str, set[str]] = {}
+for _a, _b in CONFLICT_PAIRS:
+    CONFLICTS.setdefault(_a, set()).add(_b)
+    CONFLICTS.setdefault(_b, set()).add(_a)
 
 
 def slugify(text: str) -> str:
@@ -117,6 +136,29 @@ MONTH_NAMES = [
 WEEKDAY_NAMES = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
 
 
+def gap_between(a: dict, b: dict) -> timedelta:
+    """Idle time between two games: the later start minus the earlier end.
+
+    Negative when the two games overlap.
+    """
+    a_end = a.get("end") or a["start"]
+    b_end = b.get("end") or b["start"]
+    if a["start"] <= b["start"]:
+        return b["start"] - a_end
+    return a["start"] - b_end
+
+
+def format_gap(gap: timedelta) -> str:
+    if gap < timedelta(0):
+        return "overlapping"
+    hours, minutes = divmod(int(gap.total_seconds()) // 60, 60)
+    if hours and minutes:
+        return f"{hours}h {minutes}min apart"
+    if hours:
+        return f"{hours}h apart"
+    return f"{minutes}min apart"
+
+
 def is_our_team(name: str) -> bool:
     return name.strip().casefold() in {t.casefold() for t in OUR_TEAM}
 
@@ -141,6 +183,10 @@ def render_html(events: list[dict]) -> str:
         if group and group not in league_calendar:
             league_calendar[group] = e.get("calendar", "")
 
+    events_by_day: dict[object, list[dict]] = {}
+    for e in events:
+        events_by_day.setdefault(e["start"].date(), []).append(e)
+
     rows = []
     current_month = None
     for e in events:
@@ -159,6 +205,25 @@ def render_html(events: list[dict]) -> str:
         past_cls = " past" if end and end < now else ""
         venue_cls = "home" if is_home else "away" if is_away else ""
         league_slug = league_style.get(group, {}).get("slug", "")
+        partners = CONFLICTS.get(group, set())
+        clashes = [
+            (gap_between(e, other), split_teams(other.get("summary", ""))[2])
+            for other in events_by_day.get(start.date(), [])
+            if other is not e
+            and split_teams(other.get("summary", ""))[2] in partners
+        ]
+        conflict_html = ""
+        if clashes:
+            tightest = min(gap for gap, _ in clashes)
+            gap_cls = "spaced" if tightest >= CONFLICT_GAP else "tight"
+            label = html.escape(
+                f'Same-day clash with {", ".join(sorted({n for _, n in clashes}))} '
+                f"({format_gap(tightest)})"
+            )
+            conflict_html = (
+                f'<span class="conflict {gap_cls}" role="img" '
+                f'aria-label="{label}" title="{label}">!</span>'
+            )
         time_str = start.strftime("%H:%M")
         if end:
             time_str += f"–{end.strftime('%H:%M')}"
@@ -184,6 +249,7 @@ def render_html(events: list[dict]) -> str:
             </div>
             {f'<div class="group">{html.escape(group)}</div>' if group else ""}
           </div>
+          {conflict_html}
         </div>''')
 
     events_html = "\n".join(rows) if rows else '<p class="empty">No events found.</p>'
@@ -304,6 +370,27 @@ def render_html(events: list[dict]) -> str:
   }}
   .venue.away {{ font-weight: 600; }}
   .group {{ margin-top: 0.2rem; font-size: 0.78rem; color: var(--muted); }}
+  .conflict {{
+    flex: 0 0 auto;
+    align-self: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.4rem;
+    height: 1.4rem;
+    border-radius: 50%;
+    background: #dc2626;
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: 700;
+    line-height: 1;
+    cursor: help;
+  }}
+  .conflict.spaced {{ background: #111827; }}
+  @media (prefers-color-scheme: dark) {{
+    .conflict {{ background: #ef4444; }}
+    .conflict.spaced {{ background: #05070c; border: 1px solid rgba(255,255,255,0.45); }}
+  }}
   .empty {{ color: var(--muted); }}
   footer {{
     max-width: 720px;
