@@ -14,6 +14,7 @@ CALENDARS = [
     ("117199", "https://api.innebandy.se/v2/api/calendars/team/117199", "AIK p12/13"),
     ("126811", "https://api.innebandy.se/v2/api/calendars/team/126811", "AIK Utveckling"),
     ("121632", "https://api.innebandy.se/v2/api/calendars/team/121632", "AIK p14 Vit"),
+    ("127812", "https://api.innebandy.se/v2/api/calendars/team/127812", "AIK p11"),
 ]
 OUTPUT_FILE = "index.html"
 OUR_TEAM = {"AIK IBF", "AIK IBF (B)", "AIK IBF Utveckling"}
@@ -32,8 +33,9 @@ LEAGUE_COLORS = {
     "Bäst i Stan Pojkar 14 - Grupp B": COLOR_BLUE,
     "Pantamera Pojkar 2012 B Norra": COLOR_YELLOW,
     "Pantamera Pojkar 2013 C Norra": COLOR_GRAY,
-    "Pantamera Pojkar 2010 B/C": COLOR_GREEN_1,
+    "Pantamera Pojkar 2011 B Norra": COLOR_GREEN_1,
     "Bäst i Stan Pojkar 15 - Grupp C": COLOR_GREEN_2,
+    "Bäst i Stan Pojkar 15 Slutspel": COLOR_GREEN_2,
     "Pantamera Herrjuniorer Division 3 Norra": COLOR_GREEN_3,
     "Träningsmatcher Stockholm": COLOR_GREEN_4,
     "Pantamera Pojkar 2014 A Norra": COLOR_ORANGE,
@@ -44,9 +46,10 @@ FALLBACK_PALETTE = [COLOR_GREEN_1, COLOR_GREEN_2, COLOR_GREEN_3, COLOR_GREEN_4]
 # pair once marks the badge on events in both leagues. Leagues not paired here
 # never conflict, not even with themselves.
 CONFLICT_PAIRS = [
-    ("Pantamera Pojkar 2012 B Norra", "Pantamera Pojkar 2010 B/C"),
+    ("Pantamera Pojkar 2012 B Norra", "Pantamera Pojkar 2011 B Norra"),
     ("Pantamera Pojkar 2012 B Norra", "Pantamera Herrjuniorer Division 3 Norra"),
     ("Pantamera Pojkar 2013 C Norra", "Pantamera Pojkar 2014 A Norra"),
+    ("Pantamera Pojkar 2012 B Norra", "Pantamera Pojkar 2013 C Norra"),
 ]
 # A clash with at least this much breathing room between the two games is
 # marked black (makeable); anything tighter stays red.
@@ -159,6 +162,15 @@ def format_gap(gap: timedelta) -> str:
     return f"{minutes}min apart"
 
 
+def time_range(ev: dict) -> str:
+    """Start time, plus the end time when the feed gave one: "18:00–19:30"."""
+    out = ev["start"].strftime("%H:%M")
+    end = ev.get("end")
+    if end:
+        out += f"–{end.strftime('%H:%M')}"
+    return out
+
+
 def is_our_team(name: str) -> bool:
     return name.strip().casefold() in {t.casefold() for t in OUR_TEAM}
 
@@ -206,27 +218,49 @@ def render_html(events: list[dict]) -> str:
         venue_cls = "home" if is_home else "away" if is_away else ""
         league_slug = league_style.get(group, {}).get("slug", "")
         partners = CONFLICTS.get(group, set())
-        clashes = [
-            (gap_between(e, other), split_teams(other.get("summary", ""))[2])
-            for other in events_by_day.get(start.date(), [])
-            if other is not e
-            and split_teams(other.get("summary", ""))[2] in partners
-        ]
+        clashes = sorted(
+            (
+                (gap_between(e, other), other)
+                for other in events_by_day.get(start.date(), [])
+                if other is not e
+                and split_teams(other.get("summary", ""))[2] in partners
+            ),
+            key=lambda c: c[1]["start"],
+        )
         conflict_html = ""
         if clashes:
             tightest = min(gap for gap, _ in clashes)
             gap_cls = "spaced" if tightest >= CONFLICT_GAP else "tight"
+            names = sorted({split_teams(o.get("summary", ""))[2] for _, o in clashes})
             label = html.escape(
-                f'Same-day clash with {", ".join(sorted({n for _, n in clashes}))} '
-                f"({format_gap(tightest)})"
+                f'Same-day clash with {", ".join(names)} ({format_gap(tightest)})'
             )
-            conflict_html = (
-                f'<span class="conflict {gap_cls}" role="img" '
-                f'aria-label="{label}" title="{label}">!</span>'
-            )
-        time_str = start.strftime("%H:%M")
-        if end:
-            time_str += f"–{end.strftime('%H:%M')}"
+            # One block per clashing fixture. The league is what you need to
+            # recognise the clash, so it leads — with its card color as a
+            # swatch; the teams are secondary detail underneath.
+            blocks = []
+            for gap, o in clashes:
+                o_home, o_away, o_group = split_teams(o.get("summary", ""))
+                o_accent = league_style.get(o_group, {}).get("accent", "")
+                blocks.append(f'''<div class="clash">
+                <div class="clash-league">
+                  <span class="swatch" style="background:{o_accent}"></span>
+                  {html.escape(o_group)}</div>
+                <div class="clash-teams">{html.escape(o_home)}
+                  <span class="clash-sep">vs</span>
+                  {html.escape(o_away)}</div>
+                <div class="clash-meta">{time_range(o)} &middot; {format_gap(gap)}</div>
+              </div>''')
+            clash_rows = "".join(blocks)
+            conflict_html = f'''<div class="conflict-wrap">
+            <button type="button" class="conflict {gap_cls}" aria-label="{label}"
+                    aria-expanded="false">!</button>
+            <div class="conflict-pop" role="tooltip">
+              <div class="clash-head">Same-day clash</div>
+              {clash_rows}
+            </div>
+          </div>'''
+        time_str = time_range(e)
 
         rows.append(f'''
         <div class="event league-{league_slug}{past_cls}" data-league="{league_slug}">
@@ -370,26 +404,84 @@ def render_html(events: list[dict]) -> str:
   }}
   .venue.away {{ font-weight: 600; }}
   .group {{ margin-top: 0.2rem; font-size: 0.78rem; color: var(--muted); }}
-  .conflict {{
+  .conflict-wrap {{
     flex: 0 0 auto;
     align-self: center;
+    position: relative;
+  }}
+  .conflict {{
     display: inline-flex;
     align-items: center;
     justify-content: center;
     width: 1.4rem;
     height: 1.4rem;
+    padding: 0;
+    border: 0;
     border-radius: 50%;
     background: #dc2626;
     color: #fff;
+    font-family: inherit;
     font-size: 0.95rem;
     font-weight: 700;
     line-height: 1;
-    cursor: help;
+    cursor: pointer;
   }}
   .conflict.spaced {{ background: #111827; }}
+  /* Details of the clashing fixture(s). Hidden until hover (pointer devices)
+     or a tap/click on the badge, which sets .open — touch has no hover. */
+  .conflict-pop {{
+    display: none;
+    position: absolute;
+    right: 0;
+    top: calc(100% + 0.4rem);
+    z-index: 20;
+    width: max-content;
+    max-width: min(20rem, 70vw);
+    padding: 0.6rem 0.7rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--card);
+    color: var(--fg);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+    text-align: left;
+    font-weight: 400;
+    cursor: auto;
+  }}
+  .conflict-wrap.open .conflict-pop {{ display: block; }}
+  @media (hover: hover) {{
+    .conflict-wrap:hover .conflict-pop,
+    .conflict-wrap:focus-within .conflict-pop {{ display: block; }}
+  }}
+  .clash-head {{
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-bottom: 0.4rem;
+  }}
+  .clash + .clash {{
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--border);
+  }}
+  .clash-league {{
+    display: flex;
+    align-items: flex-start;
+    gap: 0.4em;
+    font-size: 0.92rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--fg);
+  }}
+  /* Keep the swatch on the first line when a league name wraps. */
+  .clash-league .swatch {{ flex: 0 0 auto; margin-top: 0.32em; }}
+  .clash-teams {{ font-size: 0.78rem; color: var(--muted); margin-top: 0.15rem; }}
+  .clash-sep {{ margin: 0 0.15em; font-size: 0.9em; }}
+  .clash-meta {{ font-size: 0.78rem; color: var(--muted); }}
   @media (prefers-color-scheme: dark) {{
     .conflict {{ background: #ef4444; }}
     .conflict.spaced {{ background: #05070c; border: 1px solid rgba(255,255,255,0.45); }}
+    .conflict-pop {{ box-shadow: 0 6px 20px rgba(0,0,0,0.5); }}
   }}
   .empty {{ color: var(--muted); }}
   footer {{
@@ -540,6 +632,31 @@ def render_html(events: list[dict]) -> str:
       saveFilters();
       applyFilters();
     }}));
+
+    // Conflict badge details. On pointer devices CSS :hover already shows the
+    // popover; tapping/clicking the badge pins it open, which is the only way
+    // to see it on touch screens.
+    function closeConflicts(except) {{
+      document.querySelectorAll('.conflict-wrap.open').forEach(w => {{
+        if (w === except) return;
+        w.classList.remove('open');
+        w.querySelector('.conflict').setAttribute('aria-expanded', 'false');
+      }});
+    }}
+    document.querySelectorAll('.conflict').forEach(btn => btn.addEventListener('click', e => {{
+      e.stopPropagation();
+      const wrap = btn.closest('.conflict-wrap');
+      const open = !wrap.classList.contains('open');
+      closeConflicts(wrap);
+      wrap.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', String(open));
+    }}));
+    // A click inside the popover shouldn't dismiss it (text selection, links).
+    document.querySelectorAll('.conflict-pop').forEach(pop => pop.addEventListener('click', e => e.stopPropagation()));
+    document.addEventListener('click', () => closeConflicts(null));
+    document.addEventListener('keydown', e => {{
+      if (e.key === 'Escape') closeConflicts(null);
+    }});
 
     restoreFilters();
     document.querySelectorAll('.group-toggle').forEach(syncGroupToggle);
